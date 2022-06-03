@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import { HttpHeaders } from '@angular/common/http';
+import {Observable} from "rxjs";
 
 
 
@@ -25,21 +26,21 @@ export class CheckersClientService {
   }
 
   public getBoardState(state: string, move: string) {
-
     // @ts-ignore
     return this.httpClient.get<string>(this.ROOT + '/api/checkers?state=' + state + '&move=' + move, {responseType: 'text'});
   }
 
+  public getState(board: string, currentColour: string, moveFrom: number, moveTo: number): Observable<State>{
+    return this.httpClient.get<State>(this.ROOT + '/api/checkers2');
+  }
+
 }
 
-export interface Apartment {
-  id: number;
-  apartmentName: string;
-  airbnbLink: string;
-  guestsNumber: number;
-  address: string;
-  size: number;
-  reservations: any[];
-  owner: any;
+
+export interface State {
+  board: string;
+  currentColour: string;
+  moveFrom: number;
+  moveTo: number;
 }
 

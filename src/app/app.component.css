@@ -49,25 +49,31 @@ button{
   width: 80px;
   height: 80px;
   border-radius: 40px;
-  border: none;
+  border: 0px;
   position: relative;
   top: 2px;
   left: 10px;
 }
-button:hover{
-  background-color: #ff3131;
-}
+/*button:hover{*/
+/*  background-color: #2768e8;*/
+/*}*/
 
-#o{
+.o{
   background-color: transparent;
 }
 
-#r{
+.r{
   background-color: red;
 }
 
-#w{
+.w{
   background-color: antiquewhite;
+}
+
+
+/*todo: add collour for selected pawn*/
+.hi {
+  opacity: 0.8
 }
 
 
