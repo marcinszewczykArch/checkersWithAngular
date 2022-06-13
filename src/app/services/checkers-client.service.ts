@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { HttpHeaders } from '@angular/common/http';
-import {Observable} from "rxjs";
-
-
+import {catchError, Observable, of} from "rxjs";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,20 +17,26 @@ const httpOptions = {
 export class CheckersClientService {
 
 //BACKEND ON SERVER OR FROM LOCALHOST
- //ROOT = 'https://backvisitting.herokuapp.com';
+  //ROOT = 'https://backvisitting.herokuapp.com';
   ROOT = 'http://localhost:8081';
 
   constructor(private httpClient: HttpClient) {
   }
 
   // @ts-ignore
-  public getState(board: string, currentColour: string, moveFrom: number, moveTo: number) {
+  public getState(board: string, currentColour: string, moveFrom: number, moveTo: number): Observable<T | State> {
     return this.httpClient.get<State>(this.ROOT + '/api/checkers' +
       '?board='         + board +
       '&currentColour=' + currentColour +
       '&moveFrom='      + moveFrom +
-      '&moveTo='        + moveTo);
+      '&moveTo='        + moveTo)
+      // .pipe(catchError(this.errorHandler));
   }
+
+  errorHandler(error: HttpErrorResponse) {
+    return of(error.error.message);
+  }
+
 }
 
 export interface State {

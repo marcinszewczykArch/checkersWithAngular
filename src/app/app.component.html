@@ -1,19 +1,20 @@
-<!--moveFrom: {{moveFrom}} <br>-->
-<!--moveTo: {{moveTo}} <br>-->
-<!--currentMove: {{currentColour}} <br>-->
-<!--board: {{board}} <br>-->
+<!--loadedWhite: {{loadedWhite}} <br>-->
+<!--loadedRed: {{loadedRed}} <br>-->
+moveFrom: {{gameService.moveFrom}} <br>
+moveTo: {{gameService.moveTo}} <br>
+currentMove: {{gameService.currentColour}} <br>
+board: {{gameService.board}} <br>
+error: {{gameService.error}}<br>
+
+
 
 <body>
-    <table>
-      <tr>
-        <td>
-          <app-board-for-white></app-board-for-white>
-        </td>
-        <td>
-          <app-board-for-red></app-board-for-red>
-        </td>
-      </tr>
-    </table>
+<app-choose-single-multi *ngIf="loadedChooseSingleMulti"></app-choose-single-multi>
+<app-choose-colour *ngIf="loadedChooseColour"></app-choose-colour>
+<app-board-for-white *ngIf="loadedWhite"></app-board-for-white>
+<app-board-for-red *ngIf="loadedRed"></app-board-for-red>
 </body>
+
+
 
 
