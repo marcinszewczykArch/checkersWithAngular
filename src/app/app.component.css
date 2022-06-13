@@ -13,6 +13,7 @@ body{
   font-size: 1rem;
   animation: var(--shake-anim);
   animation-delay: 0.3s;
+  background-color: #dad9d9;
 }
 table{
   border-collapse: collapse;
@@ -34,13 +35,20 @@ div{
   transition: box-shadow 0.5s;
   position:relative;
 }
+
 tr:nth-of-type(odd) td:nth-of-type(even){
-  background-color: black;
+  background-color: #000000;
+}
+tr:nth-of-type(odd) td:nth-of-type(odd){
+  background-color: white;
 }
 tr:nth-of-type(even) td:nth-of-type(odd){
   background-color: black;
-
 }
+tr:nth-of-type(even) td:nth-of-type(even){
+  background-color: white;
+}
+
 td{
   width: 100px;
   height: 100px;

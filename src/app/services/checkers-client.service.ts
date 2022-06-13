@@ -20,27 +20,23 @@ export class CheckersClientService {
 
 //BACKEND ON SERVER OR FROM LOCALHOST
  //ROOT = 'https://backvisitting.herokuapp.com';
-  ROOT = 'http://localhost:8080';
+  ROOT = 'http://localhost:8081';
 
   constructor(private httpClient: HttpClient) {
   }
 
-  public getBoardState(state: string, move: string) {
-    // @ts-ignore
-    return this.httpClient.get<string>(this.ROOT + '/api/checkers?state=' + state + '&move=' + move, {responseType: 'text'});
+  // @ts-ignore
+  public getState(board: string, currentColour: string, moveFrom: number, moveTo: number) {
+    return this.httpClient.get<State>(this.ROOT + '/api/checkers' +
+      '?board='         + board +
+      '&currentColour=' + currentColour +
+      '&moveFrom='      + moveFrom +
+      '&moveTo='        + moveTo);
   }
-
-  public getState(board: string, currentColour: string, moveFrom: number, moveTo: number): Observable<State>{
-    return this.httpClient.get<State>(this.ROOT + '/api/checkers2');
-  }
-
 }
-
 
 export interface State {
   board: string;
   currentColour: string;
-  moveFrom: number;
-  moveTo: number;
 }
 
