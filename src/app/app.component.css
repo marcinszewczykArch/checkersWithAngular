@@ -1,88 +1,83 @@
-:root{
-  --shake-anim: none;
-}
+/*:root{*/
+/*  --shake-anim: none;*/
+/*}*/
 
 body{
   margin: 0;
   padding: 0;
   display:flex;
-  height: 100vh;
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
-  animation: var(--shake-anim);
-  animation-delay: 0.3s;
-  background-color: #dad9d9;
 }
-table{
-  border-collapse: collapse;
-  border: 1px solid black;
-}
-td{
-  width: calc(90vw/8);
-  height: calc(90vw/8);
-  border: 0 solid grey;
-  padding: 0;
-}
-div{
-  width: 90%;
-  height: 90%;
-  margin: 0 auto;
-  border-radius: 50%;
-  background-color: black;
-  visibility: hidden;
-  transition: box-shadow 0.5s;
-  position:relative;
-}
-
-tr:nth-of-type(odd) td:nth-of-type(even){
-  background-color: #000000;
-}
-tr:nth-of-type(odd) td:nth-of-type(odd){
-  background-color: white;
-}
-tr:nth-of-type(even) td:nth-of-type(odd){
-  background-color: black;
-}
-tr:nth-of-type(even) td:nth-of-type(even){
-  background-color: white;
-}
-
-td{
-  width: 100px;
-  height: 100px;
-}
-button{
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  border: 0px;
-  position: relative;
-  top: 2px;
-  left: 10px;
-}
-/*button:hover{*/
-/*  background-color: #2768e8;*/
+/*table{*/
+/*  border-collapse: collapse;*/
+/*  border: 1px solid black;*/
+/*}*/
+/*td{*/
+/*  width: calc(90vw/8);*/
+/*  height: calc(90vw/8);*/
+/*  border: 0 solid grey;*/
+/*  padding: 0;*/
+/*}*/
+/*div{*/
+/*  width: 90%;*/
+/*  height: 90%;*/
+/*  margin: 0 auto;*/
+/*  border-radius: 50%;*/
+/*  background-color: black;*/
+/*  visibility: hidden;*/
+/*  transition: box-shadow 0.5s;*/
+/*  position:relative;*/
 /*}*/
 
-.o{
-  background-color: transparent;
-}
+/*tr:nth-of-type(odd) td:nth-of-type(even){*/
+/*  background-color: #000000;*/
+/*}*/
+/*tr:nth-of-type(odd) td:nth-of-type(odd){*/
+/*  background-color: white;*/
+/*}*/
+/*tr:nth-of-type(even) td:nth-of-type(odd){*/
+/*  background-color: black;*/
+/*}*/
+/*tr:nth-of-type(even) td:nth-of-type(even){*/
+/*  background-color: white;*/
+/*}*/
 
-.r{
-  background-color: red;
-}
+/*td{*/
+/*  width: 100px;*/
+/*  height: 100px;*/
+/*}*/
+/*button{*/
+/*  width: 80px;*/
+/*  height: 80px;*/
+/*  border-radius: 40px;*/
+/*  border: 0px;*/
+/*  position: relative;*/
+/*  top: 2px;*/
+/*  left: 10px;*/
+/*}*/
+/*!*button:hover{*!*/
+/*!*  background-color: #2768e8;*!*/
+/*!*}*!*/
 
-.w{
-  background-color: antiquewhite;
-}
+/*.o{*/
+/*  background-color: transparent;*/
+/*}*/
+
+/*.r{*/
+/*  background-color: red;*/
+/*}*/
+
+/*.w{*/
+/*  background-color: antiquewhite;*/
+/*}*/
 
 
-/*todo: add collour for selected pawn*/
-.hi {
-  opacity: 0.8
-}
+/*!*todo: add collour for selected pawn*!*/
+/*.hi {*/
+/*  opacity: 0.8*/
+/*}*/
 
 
 
