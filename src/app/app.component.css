@@ -1,5 +1,50 @@
-body{
-  display:flex;
-  align-items: center;
-  justify-content: center;
+table {
+  width: 100%;
+  height: 100%;
+  margin-left:  auto;
+  margin-right: auto;
 }
+table, th, td {
+  border: none;
+  background-color: white;
+  /*border: 1px #f6f6f6;*/
+}
+body {
+  background-color: #f6f6f6;
+}
+.strip{
+  height: 100%;
+  width: 100%;
+  background-color: #f6f6f6;
+}
+.bottom{
+  height: 100%;
+  width: 100%;
+  background-color: #f6f6f6;
+}
+.menu{
+  text-align: center;
+  width: 1200px;
+  height: 100%;
+  background-color: white;
+}
+.error{
+  text-align: center;
+  margin: 0 auto;
+  height: 50px;
+  width: 1200px;
+  color: red;
+  background-color: white;
+}
+.container{
+  margin: 0 auto;
+  justify-content: center;
+  vertical-align: top;
+  width: 1200px;
+  height: 850px;
+  background-color: white;
+}
+.currentMove{
+
+}
+

@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   loadedChooseColour: Boolean = false;
   loadedWhite: Boolean = false;
   loadedRed: Boolean = false;
+  loadedCurrentMove: Boolean = false;
 
   loadedChooseSingleMulti: Boolean = true;
   loadedSinglePlayer: Boolean = false;

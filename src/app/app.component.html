@@ -1,20 +1,50 @@
 <!--loadedWhite: {{loadedWhite}} <br>-->
 <!--loadedRed: {{loadedRed}} <br>-->
-moveFrom: {{gameService.moveFrom}} <br>
-moveTo: {{gameService.moveTo}} <br>
-currentMove: {{gameService.currentColour}} <br>
-board: {{gameService.board}} <br>
-error: {{gameService.error}}<br>
 
-
-
+<!--moveFrom: {{gameService.moveFrom}} <br>-->
+<!--moveTo: {{gameService.moveTo}} <br>-->
+<!--currentMove: {{gameService.currentColour}} <br>-->
+<!--board: {{gameService.board}} <br>-->
+<!--error: {{gameService.error}}<br>-->
 <body>
-<app-choose-single-multi *ngIf="loadedChooseSingleMulti"></app-choose-single-multi>
-<app-choose-colour *ngIf="loadedChooseColour"></app-choose-colour>
-<app-board-for-white *ngIf="loadedWhite"></app-board-for-white>
-<app-board-for-red *ngIf="loadedRed"></app-board-for-red>
+  <table>
+    <tr>
+
+      <td width="500">
+        <div class="strip">
+          <div class="currentMove">
+            <app-current-move *ngIf="loadedCurrentMove"></app-current-move>
+          </div>
+        </div>
+      </td>
+
+      <td>
+        <div class="menu">
+          <app-menu></app-menu>
+          <hr>
+        </div>
+        <div class="error">
+          <h1>{{gameService.error}}</h1>
+        </div>
+        <div class="container">
+          <app-choose-single-multi *ngIf="loadedChooseSingleMulti"></app-choose-single-multi>
+          <app-choose-colour *ngIf="loadedChooseColour"></app-choose-colour>
+          <app-board-for-white *ngIf="loadedWhite"></app-board-for-white>
+          <app-board-for-red *ngIf="loadedRed"></app-board-for-red>
+        </div>
+      </td>
+
+      <td width="500">
+        <div class="strip">
+        </div>
+      </td>
+    </tr>
+    <td colspan="3">
+      <div class="bottom">
+      </div>
+    </td>
+
+  </table>
 </body>
-
-
 
 
