@@ -1,0 +1,63 @@
+table{
+  margin-left:200px;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+td{
+  width: calc(90vw/8);
+  height: calc(90vw/8);
+  border: 0 solid grey;
+  padding: 0;
+}
+
+tr:nth-of-type(odd) td:nth-of-type(even){
+  background-color: #000000;
+}
+
+tr:nth-of-type(odd) td:nth-of-type(odd){
+  background-color: white;
+}
+
+tr:nth-of-type(even) td:nth-of-type(odd){
+  background-color: black;
+}
+
+tr:nth-of-type(even) td:nth-of-type(even){
+  background-color: white;
+}
+
+td{
+  width: 100px;
+  height: 100px;
+}
+
+button{
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  border: 0px;
+  position: relative;
+  top: 2px;
+  left: 10px;
+}
+
+.o{
+  background-color: transparent;
+}
+
+.r{
+  background-color: red;
+}
+
+.w{
+  background-color: antiquewhite;
+}
+
+/*colour for selected pawn*/
+.hi {
+  opacity: 0.8
+}
+
+
+
