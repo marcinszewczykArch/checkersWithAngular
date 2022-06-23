@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {CheckersClientService, State} from "./checkers-client.service";
+import {webSocket} from "rxjs/webSocket";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class GameService {
   moveTo: any;
   hi: any = Array<string>(31); ///highlight array
   error: any;
+  received: any;
 
   constructor(private checkersClientService: CheckersClientService) {
   }
@@ -48,6 +50,13 @@ export class GameService {
   }
 
   ngOnInit(): void {
+    webSocket("ws://localhost:8083/ws/").subscribe(
+      msg   => {
+        this.received = msg
+        console.log(msg)},
+      err   => console.log(err),
+      () => console.log("connection is closed")
+    )
   }
 
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { HttpHeaders } from '@angular/common/http';
 import {catchError, Observable, of} from "rxjs";
+import {webSocket, WebSocketSubject} from "rxjs/webSocket";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,6 +20,7 @@ export class CheckersClientService {
 //BACKEND ON SERVER OR FROM LOCALHOST
   //ROOT = 'https://backvisitting.herokuapp.com';
   ROOT = 'http://localhost:8081';
+  WS_URL = "ws://localhost:8083/ws/aaa";
 
   constructor(private httpClient: HttpClient) {
   }
@@ -32,6 +34,10 @@ export class CheckersClientService {
       '&moveTo='        + moveTo)
       // .pipe(catchError(this.errorHandler));
   }
+
+  public getWebsocket(): WebSocketSubject<string> {
+    return webSocket(this.WS_URL)
+  };
 
   errorHandler(error: HttpErrorResponse) {
     return of(error.error.message);

@@ -9,6 +9,7 @@ import { ChooseColourComponent } from './choose-colour/choose-colour.component';
 import { ChooseSingleMultiComponent } from './choose-single-multi/choose-single-multi.component';
 import { MenuComponent } from './menu/menu.component';
 import { CurrentMoveComponent } from './current-move/current-move.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CurrentMoveComponent } from './current-move/current-move.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
