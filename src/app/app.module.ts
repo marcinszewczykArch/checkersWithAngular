@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { BoardForWhiteComponent } from './board-for-white/board-for-white.component';
 import { BoardForRedComponent } from './board-for-red/board-for-red.component';
 import { ChooseColourComponent } from './choose-colour/choose-colour.component';
@@ -10,6 +10,9 @@ import { ChooseSingleMultiComponent } from './choose-single-multi/choose-single-
 import { MenuComponent } from './menu/menu.component';
 import { CurrentMoveComponent } from './current-move/current-move.component';
 import { FormsModule } from '@angular/forms';
+import {WebsocketService} from "./services/websocket.service";
+import { LoginComponent } from './login/login.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +22,16 @@ import { FormsModule } from '@angular/forms';
     ChooseColourComponent,
     ChooseSingleMultiComponent,
     MenuComponent,
-    CurrentMoveComponent
+    CurrentMoveComponent,
+    LoginComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -35,6 +35,8 @@ export class GameService {
 
     //send request to the front and receive new state
     if (this.moveTo != null && this.moveFrom != null) {
+
+//------------------------------------------------start of part is for http connection---------------------------------
       this.checkersClientService.getState(this.board, this.currentColour, this.moveFrom, this.moveTo).subscribe(
         newState => {
               this.board = newState.board
@@ -42,6 +44,17 @@ export class GameService {
               this.error = null},
       error => {this.error = error.error}
       )
+//------------------------------------------------end of part  for http connection--------------------------------------
+
+//------------------------------------------------start of part is for ws connection------------------------------------
+      this.checkersClientService.getState(this.board, this.currentColour, this.moveFrom, this.moveTo).subscribe(
+        newState => {
+          this.board = newState.board
+          this.currentColour = newState.movesNow
+          this.error = null},
+        error => {this.error = error.error}
+      )
+//------------------------------------------------end of part  for ws connection----------------------------------------
 
       this.moveTo = null
       this.moveFrom = null

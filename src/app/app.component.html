@@ -9,12 +9,13 @@
 <!--board: {{gameService.board}} <br>-->
 <!--error: {{gameService.error}}<br>-->
 <body>
-  <table>
+  <table id="main">
     <tr>
 
       <td width="500">
         <div class="strip">
           <div class="currentMove">
+            <p>logged player: {{this.wbsocketService.playerName}}</p>
             <app-current-move *ngIf="loadedCurrentMove"></app-current-move>
           </div>
         </div>
@@ -33,28 +34,11 @@
           <app-choose-colour *ngIf="loadedChooseColour"></app-choose-colour>
           <app-board-for-white *ngIf="loadedWhite"></app-board-for-white>
           <app-board-for-red *ngIf="loadedRed"></app-board-for-red>
+          <app-login *ngIf="loadedLogin"></app-login>
+          <app-chat *ngIf="loadedChat"></app-chat>
           <br>
-
-
-
-          wiadomości tutaj: <br>
-              <ng-container *ngFor="let r of received.reverse()">
-                {{r}} <br>
-              </ng-container>
-          <br>
-          error tutaj: {{error}}<br><br>
-          nowa wiadomośc tutaj:<br>
-          <textarea [(ngModel)]="this.message"></textarea> <br>
-          <button (click)="sentMessage(message);"><h2>SEND</h2></button>
-          <button (click)="makeError();"><h2>ERROR</h2></button>
-          <button (click)="makeComplete();"><h2>COMPLETE</h2></button>
-          <button (click)="makeConnection();"><h2>RECONNECT</h2></button>
-
-
-
         </div>
       </td>
-
 
   </table>
 </body>
