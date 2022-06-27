@@ -1,6 +1,5 @@
-body {
+.container {
   font-family: "Century Gothic";
-  width: 700px;
 }
 
 .chat {
@@ -18,13 +17,9 @@ body {
   position: center;
 }
 
-/*.textInput {*/
-/*  height: 100px;*/
-/*  width: 700px;*/
-/*  display: block;*/
-/*  position: center;*/
-/*  border-width: 0;*/
-/*}*/
+.textInput {
+  width: 100%;
+}
 
 input {
   height: 20px;

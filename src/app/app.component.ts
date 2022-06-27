@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   loadedSinglePlayer: Boolean = false;
   loadedMultiPlayer: Boolean = false;
 
-  loadedLogin: Boolean = true;
+  loadedLogin: Boolean = false;
   loadedChat: Boolean = false;
 
   constructor(public gameService: GameService, public wbsocketService: WebsocketService) {

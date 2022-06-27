@@ -13,7 +13,7 @@ export class ChooseSingleMultiComponent implements OnInit {
   }
 
   loadSinglePlayer() {
-    this.appComponent.loadedChooseColour = true
+    this.appComponent.loadedLogin = true
     this.appComponent.loadedChooseSingleMulti = false
   }
 

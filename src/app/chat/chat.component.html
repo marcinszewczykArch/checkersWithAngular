@@ -1,4 +1,4 @@
-<body>
+<div class="container">
 
   <div class="chat">
     <ng-container *ngFor="let msg of this.websocketService.received.reverse()">
@@ -8,7 +8,7 @@
 
   <div class="textInput">
     <p><input type="text" [(ngModel)]=this.websocketService.message></p>
-    <button (click)="this.websocketService.sentMessage(this.websocketService.message);"><h2>SEND</h2></button>
+    <button (click)="this.websocketService.sentChatMessage(this.websocketService.message);"><h2>SEND</h2></button>
   </div>
 
   error tutaj: {{this.websocketService.error}}<br><br>
@@ -17,4 +17,4 @@
   <!--<button (click)="this.websocketService.makeComplete();"><h2>COMPLETE</h2></button>-->
   <!--<button (click)="this.websocketService.makeConnection();"><h2>RECONNECT</h2></button>-->
 
-</body>
+</div>

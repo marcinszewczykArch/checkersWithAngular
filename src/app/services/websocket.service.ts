@@ -43,6 +43,13 @@ export class WebsocketService {
     this.message = "";
   }
 
+  sentChatMessage(message: string): void {
+    if (message.length > 0) {
+      this.subject.next("/chat " + message);
+    }
+    this.message = "";
+  }
+
   makeComplete(): void {
     this.subject.complete();
 
