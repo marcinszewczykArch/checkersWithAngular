@@ -1,0 +1,7 @@
+<p>Rooms:</p>
+
+<div *ngFor="let room of this.websocketService.rooms">
+
+  <button (click)="enterRoom(room);"><h2>{{room}}</h2></button><br>
+
+</div>

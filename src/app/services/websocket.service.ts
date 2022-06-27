@@ -12,8 +12,8 @@ import {CheckersClientService} from "./checkers-client.service";
 export class WebsocketService {
 
   received: any[] = [];
-  rooms: any[] = [];
-  players: any[] = [];
+  rooms: any[] = ["room1","room2"];
+  players: any[] = ["player1","player2"];
   error: any = "error"
   message: string;
   subject: WebSocketSubject<string>;
@@ -40,7 +40,7 @@ export class WebsocketService {
         if (inputType == "/pla") { //players (send to all)
           this.players = inputValue.split(",")
 
-        } else if(inputType == "/rom") { //rooms (send to all)
+        } else if(inputType == "/rms") { //rooms (send to all)
           this.rooms = inputValue.split(",")
 
         } else if(inputType == "/msg") { //msg (send to user / users in room)
