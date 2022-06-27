@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
 
   loadedLogin: Boolean = false;
   loadedChat: Boolean = false;
+  loadedRooms: Boolean = false;
+  loadedPlayers: Boolean = false;
 
   constructor(public gameService: GameService, public wbsocketService: WebsocketService) {
   }

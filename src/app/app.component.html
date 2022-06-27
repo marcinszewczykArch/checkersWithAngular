@@ -9,19 +9,20 @@
 <!--board: {{gameService.board}} <br>-->
 <!--error: {{gameService.error}}<br>-->
 <body>
+  <div class="webpage">
+
   <table id="main">
     <tr>
 
-      <td width="500">
+      <td width="300">
         <div class="strip">
           <div class="currentMove">
-            <p>logged player: {{this.wbsocketService.playerName}}</p>
             <app-current-move *ngIf="loadedCurrentMove"></app-current-move>
           </div>
         </div>
       </td>
 
-      <td>
+      <td bgcolor="white">
         <div class="menu">
           <app-menu></app-menu>
           <hr>
@@ -35,12 +36,23 @@
           <app-board-for-white *ngIf="loadedWhite"></app-board-for-white>
           <app-board-for-red *ngIf="loadedRed"></app-board-for-red>
           <app-login *ngIf="loadedLogin"></app-login>
-          <app-chat *ngIf="loadedChat"></app-chat>
+          <app-rooms *ngIf="loadedRooms"></app-rooms>
           <br>
         </div>
       </td>
 
+      <td width="300">
+        <div class="strip">
+          <p>logged player: {{this.wbsocketService.playerName}}</p>
+          <app-players *ngIf="loadedPlayers"></app-players>
+          <app-chat *ngIf="loadedChat"></app-chat>
+        </div>
+      </td>
+    </tr>
+
   </table>
+
+    stopka
+
+  </div>
 </body>
-
-

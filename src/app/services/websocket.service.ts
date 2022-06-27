@@ -12,6 +12,8 @@ import {CheckersClientService} from "./checkers-client.service";
 export class WebsocketService {
 
   received: any[] = [];
+  rooms: any[] = [];
+  players: any[] = [];
   error: any = "error"
   message: string;
   subject: WebSocketSubject<string>;
@@ -30,7 +32,24 @@ export class WebsocketService {
 
   makeConnection(): void {
     this.subject.subscribe(
-      msg     => {this.received.push(msg), console.log("ws message: " + msg)},
+      msg     => {
+        let inputType = msg.substring(0, 4);
+        let inputValue = inputType.slice(5)
+        console.log("ws message: " + msg)
+
+        if (inputType == "/pla") { //players (send to all)
+          this.players = inputValue.split(",")
+
+        } else if(inputType == "/rom") { //rooms (send to all)
+          this.rooms = inputValue.split(",")
+
+        } else if(inputType == "/msg") { //msg (send to user / users in room)
+          this.received.push(msg)
+
+        } else if(inputType == "/gam") { //game (send to users in room)
+          //todo: to be implemented
+        }},
+
       err     => {this.error = err.error, console.log("ws error: " + err)},
       ()   => console.log("ws connection is closed")
     )
@@ -52,6 +71,16 @@ export class WebsocketService {
 
   sentMoveMessage(board: string, colour: string, from: string, to: string): void {
     this.subject.next("/move " + board + " " + colour + " " + from + " " + to);
+    this.message = "";
+  }
+
+  joinRoom(roomName: string): void {
+    this.subject.next("/room " + roomName);
+    this.message = "";
+  }
+
+  listRooms(): void {
+    this.subject.next("/rooms");
     this.message = "";
   }
 

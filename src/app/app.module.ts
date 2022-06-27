@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import {WebsocketService} from "./services/websocket.service";
 import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
+import { RoomsComponent } from './rooms/rooms.component';
+import { PlayersComponent } from './players/players.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ChatComponent } from './chat/chat.component';
     CurrentMoveComponent,
     LoginComponent,
     ChatComponent,
+    RoomsComponent,
+    PlayersComponent,
   ],
   imports: [
     BrowserModule,

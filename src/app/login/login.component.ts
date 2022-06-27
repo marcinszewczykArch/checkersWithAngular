@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
     this.websocketService.initializeWebsocket(playerName)
     this.websocketService.makeConnection()
     this.appComponent.loadedLogin = false
-    this.appComponent.loadedChat = true
+    // this.appComponent.loadedChat = true
+    this.appComponent.loadedRooms = true
+    this.appComponent.loadedPlayers = true
   }
 
 
