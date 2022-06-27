@@ -50,6 +50,11 @@ export class WebsocketService {
     this.message = "";
   }
 
+  sentMoveMessage(board: string, colour: string, from: string, to: string): void {
+    this.subject.next("/move " + board + " " + colour + " " + from + " " + to);
+    this.message = "";
+  }
+
   makeComplete(): void {
     this.subject.complete();
 
