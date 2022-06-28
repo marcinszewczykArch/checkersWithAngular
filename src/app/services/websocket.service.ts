@@ -18,6 +18,7 @@ export class WebsocketService {
   message: string;
   subject: WebSocketSubject<string>;
   playerName: string;
+  multiplayerState: MultiplayerState;
 
   constructor() {
   }
@@ -30,26 +31,34 @@ export class WebsocketService {
       })
   }
 
+  // makeConnection(): void {
+  //   this.subject.subscribe(
+  //     msg     => {
+  //       let inputType = msg.substring(0, 4);
+  //       let inputValue = msg.slice(5)
+  //       console.log("ws message: " + msg)
+  //
+  //       if (inputType == "/pla") { //players (send to all)
+  //         this.players = inputValue.split(",")
+  //
+  //       } else if(inputType == "/rms") { //rooms (send to all)
+  //         this.rooms = inputValue.split(",")
+  //
+  //       } else if(inputType == "/msg") { //msg (send to user / users in room)
+  //         this.received.push(msg)
+  //
+  //       } else if(inputType == "/gam") { //game (send to users in room)
+  //         //todo: to be implemented
+  //       }},
+  //
+  //     err     => {this.error = err.error, console.log("ws error: " + err)},
+  //     ()   => console.log("ws connection is closed")
+  //   )
+  // }
+
   makeConnection(): void {
     this.subject.subscribe(
-      msg     => {
-        let inputType = msg.substring(0, 4);
-        let inputValue = msg.slice(5)
-        console.log("ws message: " + msg)
-
-        if (inputType == "/pla") { //players (send to all)
-          this.players = inputValue.split(",")
-
-        } else if(inputType == "/rms") { //rooms (send to all)
-          this.rooms = inputValue.split(",")
-
-        } else if(inputType == "/msg") { //msg (send to user / users in room)
-          this.received.push(msg)
-
-        } else if(inputType == "/gam") { //game (send to users in room)
-          //todo: to be implemented
-        }},
-
+      msg     => this.multiplayerState = JSON.parse(msg),
       err     => {this.error = err.error, console.log("ws error: " + err)},
       ()   => console.log("ws connection is closed")
     )
@@ -69,7 +78,7 @@ export class WebsocketService {
     this.message = "";
   }
 
-  sentMoveMessage(board: string, colour: string, from: string, to: string): void {
+  makeMove(board: string, colour: string, from: string, to: string): void {
     this.subject.next("/move " + board + " " + colour + " " + from + " " + to);
     this.message = "";
   }
@@ -79,18 +88,27 @@ export class WebsocketService {
     this.message = "";
   }
 
-  listRooms(): void {
-    this.subject.next("/rooms");
+  leaveRoom(): void {
+    this.subject.next("/leaveRoom");
     this.message = "";
   }
 
   makeComplete(): void {
     this.subject.complete();
-
   }
 
   makeError(): void {
     this.subject.error("broken!")
   }
 
+}
+
+export interface Room {
+  name: string;
+  players: string[];
+}
+
+export interface MultiplayerState {
+  players: string[];
+  rooms: Room[];
 }

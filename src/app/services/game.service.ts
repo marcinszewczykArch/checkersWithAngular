@@ -47,13 +47,13 @@ export class GameService {
 //------------------------------------------------end of part  for http connection--------------------------------------
 
 //------------------------------------------------start of part is for ws connection------------------------------------
-      this.checkersClientService.getState(this.board, this.currentColour, this.moveFrom, this.moveTo).subscribe(
-        newState => {
-          this.board = newState.board
-          this.currentColour = newState.movesNow
-          this.error = null},
-        error => {this.error = error.error}
-      )
+//       this.checkersClientService.getState(this.board, this.currentColour, this.moveFrom, this.moveTo).subscribe(
+//         newState => {
+//           this.board = newState.board
+//           this.currentColour = newState.movesNow
+//           this.error = null},
+//         error => {this.error = error.error}
+//       )
 //------------------------------------------------end of part  for ws connection----------------------------------------
 
       this.moveTo = null
