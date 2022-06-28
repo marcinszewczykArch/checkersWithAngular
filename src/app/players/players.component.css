@@ -1,0 +1,28 @@
+body {
+  font-family: "Century Gothic";
+  font-weight: 200;
+}
+
+table{
+  border: none;
+  text-align: left;
+  padding: 5px;
+
+  width: 100%;
+}
+
+.right {
+  text-align: right;
+  margin-right: 1em;
+}
+
+.left {
+  text-align: left;
+  margin-left: 1em;
+}
+
+
+/* podświetlenie wiersza tabeli*/
+tr:hover {
+  background-color: #dbe827;
+}

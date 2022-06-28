@@ -1,7 +1,24 @@
-<p>Rooms:</p>
+<body>
 
-<div *ngFor="let room of this.websocketService.rooms">
+<table width="100%" class="rooms">
 
-  <button (click)="enterRoom(room);"><h2>{{room}}</h2></button><br>
+<thead>
+<th>  ROOM </th>
+<th>  MEMBERS </th>
+<th>  JOIN BUTTON  </th>
+</thead>
 
-</div>
+<tr *ngFor="let room of this.websocketService.rooms">
+  <td width="40%">{{room}}</td>
+  <td width="40%">
+    <table width="100%" class="members">
+      <tr><div id="squareRed"></div> member1</tr>
+      <tr><div id="squareWhite"></div> member2</tr>
+    </table>
+  </td>
+  <td width="20%"><button (click)="enterRoom(room);"><h2><<<</h2></button><br></td>
+</tr>
+
+</table>
+
+</body>

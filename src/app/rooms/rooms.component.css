@@ -1,0 +1,53 @@
+body {
+  font-family: "Century Gothic";
+  font-weight: 200;
+}
+
+table{
+  border: none;
+  text-align: left;
+  padding: 5px;
+
+  width: 100%;
+}
+
+
+/* podświetlenie wiersza tabeli*/
+tr:hover {
+  background-color: #dbe827;
+}
+
+button {
+  height: 70%;
+  background-color: #dad9d9;
+  border-color: gray;
+  border-width: 0;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 0;
+  position: center;
+  color: white;
+}
+
+button:hover {
+  color: black;
+}
+
+#squareRed {
+   width: 10px;
+   height: 10px;
+   background: red;
+  border:1px solid red;
+  display: inline-block;
+ }
+
+#squareWhite {
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border:1px solid black;
+  display: inline-block;
+}

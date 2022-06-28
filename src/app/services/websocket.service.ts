@@ -12,7 +12,7 @@ import {CheckersClientService} from "./checkers-client.service";
 export class WebsocketService {
 
   received: any[] = [];
-  rooms: any[] = ["room1","room2"];
+  rooms: any[] = ["room1","room2","room3","room4","room5","room6"];
   players: any[] = ["player1","player2"];
   error: any = "error"
   message: string;
@@ -34,7 +34,7 @@ export class WebsocketService {
     this.subject.subscribe(
       msg     => {
         let inputType = msg.substring(0, 4);
-        let inputValue = inputType.slice(5)
+        let inputValue = msg.slice(5)
         console.log("ws message: " + msg)
 
         if (inputType == "/pla") { //players (send to all)

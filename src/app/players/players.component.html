@@ -1,8 +1,17 @@
-<p>Players:</p>
+<body>
 
-<div *ngFor="let player of this.websocketService.rooms">
+<table width="100%" class="players">
 
-  {{player}} <br>
+  <thead>
+  <th>  PLAYERS </th>
+  <th>  SCORE </th>
+  </thead>
 
+  <tr *ngFor="let player of this.websocketService.players">
+    <td class="left">{{player}}</td>
+    <td class="right">124</td>
+  </tr>
 
-</div>
+</table>
+
+</body>
