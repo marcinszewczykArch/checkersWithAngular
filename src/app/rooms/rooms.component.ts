@@ -9,6 +9,8 @@ import {WebsocketService} from "../services/websocket.service";
 })
 export class RoomsComponent implements OnInit {
 
+  newRoomName: string
+
   constructor(public appComponent: AppComponent, public websocketService: WebsocketService) { }
 
   ngOnInit(): void {
@@ -18,9 +20,18 @@ export class RoomsComponent implements OnInit {
     this.appComponent.loadedRooms = false
     this.appComponent.loadedPlayers = false
     this.appComponent.loadedChat = true
-    this.appComponent.loadedWhite = true
+    this.appComponent.loadedRed = true
     this.appComponent.loadedCurrentMove = true
     this.websocketService.joinRoom(roomName)
+  }
+
+  createRoom(roomName: string): void {
+    this.appComponent.loadedRooms = false
+    this.appComponent.loadedPlayers = false
+    this.appComponent.loadedChat = true
+    this.appComponent.loadedWhite = true
+    this.appComponent.loadedCurrentMove = true
+    this.websocketService.createNewRoom(roomName)
   }
 
 }

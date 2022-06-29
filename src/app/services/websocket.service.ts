@@ -4,23 +4,26 @@ import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
-import {CheckersClientService} from "./checkers-client.service";
+import {CheckersClientService, GameState} from "./checkers-client.service";
+import {GameService} from "./game.service";
+import {GameStateService} from "./game-state.service";
 
-
+const STATE: string = "/state"
+const MOVE: string = "/move"
+const CHAT: string = "/chat"
 
 @Injectable()
 export class WebsocketService {
 
   received: any[] = [];
-  rooms: any[] = ["room1","room2","room3","room4","room5","room6"];
-  players: any[] = ["player1","player2"];
   error: any = "error"
   message: string;
   subject: WebSocketSubject<string>;
   playerName: string;
   multiplayerState: MultiplayerState;
 
-  constructor() {
+
+  constructor(public gameStateService: GameStateService) {
   }
 
   initializeWebsocket(playerName: string) {
@@ -31,39 +34,17 @@ export class WebsocketService {
       })
   }
 
-  // makeConnection(): void {
-  //   this.subject.subscribe(
-  //     msg     => {
-  //       let inputType = msg.substring(0, 4);
-  //       let inputValue = msg.slice(5)
-  //       console.log("ws message: " + msg)
-  //
-  //       if (inputType == "/pla") { //players (send to all)
-  //         this.players = inputValue.split(",")
-  //
-  //       } else if(inputType == "/rms") { //rooms (send to all)
-  //         this.rooms = inputValue.split(",")
-  //
-  //       } else if(inputType == "/msg") { //msg (send to user / users in room)
-  //         this.received.push(msg)
-  //
-  //       } else if(inputType == "/gam") { //game (send to users in room)
-  //         //todo: to be implemented
-  //       }},
-  //
-  //     err     => {this.error = err.error, console.log("ws error: " + err)},
-  //     ()   => console.log("ws connection is closed")
-  //   )
-  // }
-
-  //string.startsWith(/state)
-  //"/state{json}".replace('/state','');
-
   makeConnection(): void {
     this.subject.subscribe(
       msg     => {
-      if(msg.includes("rooms")) {
-        this.multiplayerState = JSON.parse(msg)
+      if(msg.startsWith(STATE)) {
+        let newState = msg.replace(STATE,'')
+        this.multiplayerState = JSON.parse(newState)
+      } else if(msg.startsWith(MOVE)) {
+        let move = msg.replace(MOVE, '')
+        let gameState: GameState = JSON.parse(move)
+        this.gameStateService.board = gameState.board
+        this.gameStateService.currentColour = gameState.movesNow
       } else  {
         this.received.push(msg)
       }
@@ -109,6 +90,12 @@ export class WebsocketService {
 
   makeError(): void {
     this.subject.error("broken!")
+  }
+
+
+  createNewRoom(newRoomName: string): void {
+    this.subject.next("/room " + newRoomName);
+    this.message = "";
   }
 
 }

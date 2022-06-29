@@ -25,5 +25,9 @@
 
 </table>
 
-{{this.websocketService.multiplayerState.players}}
+
+new room:
+<p><input type="text" [(ngModel)]=this.newRoomName></p>
+<button (click)="createRoom(this.newRoomName);"><h2>CREATE</h2></button>
+
 </body>

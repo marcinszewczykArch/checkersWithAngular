@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CheckersClientService} from "../services/checkers-client.service";
 import {GameService} from "../services/game.service";
+import {GameStateService} from "../services/game-state.service";
 
 @Component({
   selector: 'app-board-for-white',
@@ -9,7 +10,7 @@ import {GameService} from "../services/game.service";
 })
 export class BoardForWhiteComponent implements OnInit {
 
-  constructor(public gameService: GameService) {
+  constructor(public gameService: GameService, public gameStateService: GameStateService) {
   }
 
   action1(id: string) {

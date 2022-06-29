@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
-import {CheckersClientService, State} from "./checkers-client.service";
+import {CheckersClientService, GameState} from "./checkers-client.service";
 import {webSocket} from "rxjs/webSocket";
+import {WebsocketService} from "./websocket.service";
+import {GameStateService} from "./game-state.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  board: any = 'rrrrrrrrrrrroooooooowwwwwwwwwwww'
-  currentColour: any = 'w'
+  // board: any;
+  // currentColour: any;
   moveFrom: any;
   moveTo: any;
   hi: any = Array<string>(31); ///highlight array
   error: any;
   received: any;
 
-  constructor(private checkersClientService: CheckersClientService) {
+  constructor(private checkersClientService: CheckersClientService, public websocketService: WebsocketService, public gameStateService: GameStateService) {
   }
 
   action1(id: string) {
@@ -22,14 +24,14 @@ export class GameService {
     this.hi = Array<string>(31)
 
     //choose your pawn to move
-    if (this.board[id] == this.currentColour) {
+    if (this.gameStateService.board[id] == this.gameStateService.currentColour) {
       this.moveFrom = id
       this.hi[id] = "hi"
       this.moveTo = null
     }
 
     //choose destination if pawn is chosen
-    if (this.board[id] == "o" && this.moveFrom != null) {
+    if (this.gameStateService.board[id] == "o" && this.moveFrom != null) {
       this.moveTo = id
     }
 
@@ -37,23 +39,17 @@ export class GameService {
     if (this.moveTo != null && this.moveFrom != null) {
 
 //------------------------------------------------start of part is for http connection---------------------------------
-      this.checkersClientService.getState(this.board, this.currentColour, this.moveFrom, this.moveTo).subscribe(
+      this.checkersClientService.getState(this.gameStateService.board, this.gameStateService.currentColour, this.moveFrom, this.moveTo).subscribe(
         newState => {
-              this.board = newState.board
-              this.currentColour = newState.movesNow
+              this.gameStateService.board = newState.board
+              this.gameStateService.currentColour = newState.movesNow
               this.error = null},
       error => {this.error = error.error}
       )
 //------------------------------------------------end of part  for http connection--------------------------------------
 
 //------------------------------------------------start of part is for ws connection------------------------------------
-//       this.checkersClientService.getState(this.board, this.currentColour, this.moveFrom, this.moveTo).subscribe(
-//         newState => {
-//           this.board = newState.board
-//           this.currentColour = newState.movesNow
-//           this.error = null},
-//         error => {this.error = error.error}
-//       )
+      this.websocketService.makeMove(this.gameStateService.board, this.gameStateService.currentColour, this.moveFrom, this.moveTo)
 //------------------------------------------------end of part  for ws connection----------------------------------------
 
       this.moveTo = null
@@ -63,6 +59,9 @@ export class GameService {
   }
 
   ngOnInit(): void {
+    this.gameStateService.board = 'rrrrrrrrrrrroooooooowwwwwwwwwwww' //todo: remove when initial state comes from backend
+    this.gameStateService.currentColour = 'w'//todo: remove when initial state comes from backend
+
     webSocket("ws://localhost:8083/ws/").subscribe(
       msg   => {
         this.received = msg

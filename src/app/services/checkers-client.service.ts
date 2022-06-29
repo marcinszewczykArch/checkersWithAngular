@@ -26,8 +26,8 @@ export class CheckersClientService {
   }
 
   // @ts-ignore
-  public getState(board: string, currentColour: string, moveFrom: number, moveTo: number): Observable<T | State> {
-    return this.httpClient.get<State>(this.ROOT + '/api/checkers' +
+  public getState(board: string, currentColour: string, moveFrom: number, moveTo: number): Observable<T | GameState> {
+    return this.httpClient.get<GameState>(this.ROOT + '/api/checkers' +
       '?board='         + board +
       '&currentColour=' + currentColour +
       '&moveFrom='      + moveFrom +
@@ -35,18 +35,19 @@ export class CheckersClientService {
       // .pipe(catchError(this.errorHandler));
   }
 
-  public getWebsocket(): WebSocketSubject<string> {
-    return webSocket(this.WS_URL)
-  };
-
   errorHandler(error: HttpErrorResponse) {
     return of(error.error.message);
   }
 
 }
 
-export interface State {
-  board: string;
-  currentColour: string;
-}
+  export interface Status {
+    tag: string;
+  }
 
+  export interface GameState {
+    status: Status;
+    movesNow: string;
+    board: string;
+    nextMoveBy: string;
+  }
