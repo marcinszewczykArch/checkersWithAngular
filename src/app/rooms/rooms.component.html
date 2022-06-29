@@ -8,17 +8,22 @@
 <th>  JOIN BUTTON  </th>
 </thead>
 
-<tr *ngFor="let room of this.websocketService.rooms">
-  <td width="40%">{{room}}</td>
+<tr *ngFor="let room of this.websocketService.multiplayerState.rooms">
+  <td width="40%">{{room.name}}</td>
   <td width="40%">
     <table width="100%" class="members">
-      <tr><div id="squareRed"></div> member1</tr>
-      <tr><div id="squareWhite"></div> member2</tr>
+      <tr><div id="squareWhite"></div> {{room.players[0]}}</tr>
+      <tr><div id="squareRed"></div> {{room.players[1]}}</tr>
     </table>
   </td>
-  <td width="20%"><button (click)="enterRoom(room);"><h2><<<</h2></button><br></td>
+  <td width="20%">
+    <div *ngIf="room.players.length < 2">
+      <button (click)="enterRoom(room.name);"><h2><<<</h2></button><br>
+    </div>
+  </td>
 </tr>
 
 </table>
 
+{{this.websocketService.multiplayerState.players}}
 </body>

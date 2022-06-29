@@ -7,7 +7,7 @@
   <th>  SCORE </th>
   </thead>
 
-  <tr *ngFor="let player of this.websocketService.players">
+  <tr *ngFor="let player of this.websocketService.multiplayerState.players">
     <td class="left">{{player}}</td>
     <td class="right">124</td>
   </tr>

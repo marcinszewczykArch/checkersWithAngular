@@ -19,6 +19,7 @@ export class RoomsComponent implements OnInit {
     this.appComponent.loadedPlayers = false
     this.appComponent.loadedChat = true
     this.appComponent.loadedWhite = true
+    this.appComponent.loadedCurrentMove = true
     this.websocketService.joinRoom(roomName)
   }
 

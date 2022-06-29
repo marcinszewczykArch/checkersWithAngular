@@ -56,9 +56,19 @@ export class WebsocketService {
   //   )
   // }
 
+  //string.startsWith(/state)
+  //"/state{json}".replace('/state','');
+
   makeConnection(): void {
     this.subject.subscribe(
-      msg     => this.multiplayerState = JSON.parse(msg),
+      msg     => {
+      if(msg.includes("rooms")) {
+        this.multiplayerState = JSON.parse(msg)
+      } else  {
+        this.received.push(msg)
+      }
+    },
+
       err     => {this.error = err.error, console.log("ws error: " + err)},
       ()   => console.log("ws connection is closed")
     )
