@@ -11,7 +11,7 @@
 <tr *ngFor="let room of this.websocketService.multiplayerState.rooms">
   <td width="40%">{{room.name}}</td>
   <td width="40%">
-    <table width="100%" class="members">
+    <table width="100%">
       <tr><div id="squareWhite"></div> {{room.players[0]}}</tr>
       <tr><div id="squareRed"></div> {{room.players[1]}}</tr>
     </table>

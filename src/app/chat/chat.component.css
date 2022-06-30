@@ -2,6 +2,14 @@
   font-family: "Century Gothic";
 }
 
+table{
+  border: none;
+  text-align: left;
+  padding: 5px;
+
+  width: 100%;
+}
+
 .chat {
   text-align: left;
   border-width: 0;
@@ -51,4 +59,20 @@ button {
 button:hover {
   color: #ffffff;
   background-color: #131313;
+}
+
+#squareRed {
+  width: 10px;
+  height: 10px;
+  background: red;
+  border:1px solid red;
+  display: inline-block;
+}
+
+#squareWhite {
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border:1px solid black;
+  display: inline-block;
 }

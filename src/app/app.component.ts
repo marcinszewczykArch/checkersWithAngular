@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GameService} from "./services/game.service";
 import {LoginComponent} from "./login/login.component";
 import {WebsocketService} from "./services/websocket.service";
+import {GameStateService} from "./services/game-state.service";
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
   loadedRooms: Boolean = false;
   loadedPlayers: Boolean = false;
 
-  constructor(public gameService: GameService, public wbsocketService: WebsocketService) {
+  constructor(public gameService: GameService, public websocketService: WebsocketService, public gameStateService: GameStateService) {
   }
 
   ngOnInit(): void {

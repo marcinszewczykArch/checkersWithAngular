@@ -1,27 +1,24 @@
 <div class="container">
 
+  <table width="100%">
+    <tr><div id="squareWhite"></div> {{this.gameStateService.playerWhite}}</tr>
+    <tr><div id="squareRed"></div> {{this.gameStateService.playerRed}}</tr>
+  </table>
+
   <div class="chat">
-    <ng-container *ngFor="let msg of this.websocketService.received.reverse()">
+    <ng-container *ngFor="let msg of this.websocketService.received">
       {{msg}} <br>
     </ng-container>
   </div>
 
   <div class="textInput">
-    <p><input type="text" [(ngModel)]=this.websocketService.message></p>
+    <p><input type="text" [(ngModel)]=this.websocketService.message (keyup.enter)=this.websocketService.sentChatMessage(this.websocketService.message)></p>
     <button (click)="this.websocketService.sentChatMessage(this.websocketService.message);"><h2>SEND</h2></button>
   </div>
 
-  error tutaj: {{this.websocketService.error}}<br><br>
 
-  <!--<button (click)="this.websocketService.makeError();"><h2>ERROR</h2></button>-->
-  <!--<button (click)="this.websocketService.makeComplete();"><h2>COMPLETE</h2></button>-->
-  <!--<button (click)="this.websocketService.makeConnection();"><h2>RECONNECT</h2></button>-->
+  <br>
+  <button (click)="giveUp();"><h2>LEAVE ROOM</h2></button>
 
 </div>
 
-
-//todo: make it to show players in room
-<table *ngFor="let room of this.websocketService.multiplayerState.rooms" width="100%" class="members">
-  <tr><div id="squareWhite"></div> {{room.players[0]}}</tr>
-  <tr><div id="squareRed"></div> {{room.players[1]}}</tr>
-</table>

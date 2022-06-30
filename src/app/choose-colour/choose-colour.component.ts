@@ -7,7 +7,7 @@ import {AppComponent} from "../app.component";
   templateUrl: './choose-colour.component.html',
   styleUrls: ['./choose-colour.component.css']
 })
-export class ChooseColourComponent implements OnInit {
+export class ChooseColourComponent {
 
   constructor(public appComponent: AppComponent) {
   }
@@ -24,9 +24,6 @@ export class ChooseColourComponent implements OnInit {
     this.appComponent.loadedWhite = false
     this.appComponent.loadedChooseColour = false
     this.appComponent.loadedCurrentMove = true
-  }
-
-  ngOnInit(): void {
   }
 
 }

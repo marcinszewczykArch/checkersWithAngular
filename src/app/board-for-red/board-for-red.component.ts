@@ -7,17 +7,13 @@ import {GameStateService} from "../services/game-state.service";
   templateUrl: './board-for-red.component.html',
   styleUrls: ['./board-for-red.component.css']
 })
-export class BoardForRedComponent implements OnInit {
+export class BoardForRedComponent {
 
   constructor(public gameService: GameService, public gameStateService: GameStateService) {
   }
 
-  action1(id: string) {
-    this.gameService.action1(id)
-  }
-
-  ngOnInit(): void {
-    this.gameService.ngOnInit()
+  makeMoveRed(id: string) {
+    this.gameService.makeMove(id, "r")
   }
 
 }

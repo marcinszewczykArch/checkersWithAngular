@@ -7,16 +7,17 @@ body {
 /*}*/
 
 .container {
-   max-width: 1200px;
-   margin: 0 auto;
-   text-align: center;
+  max-width: 1200px;
+  max-height: 70px;
+  margin: 0 auto;
+  text-align: center;
  }
 
 button {
-  background-color: white;
+  background-color: transparent;
   border-color: white;
   border-width: 0;
-  padding: 5px 5px;
+  /*padding: 5px 5px;*/
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -32,6 +33,11 @@ button:hover {
 
 h1 {
   colour: gray
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 250%;
 }
 
 .logo {

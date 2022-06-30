@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {AppComponent} from "../app.component";
 import {WebsocketService} from "../services/websocket.service";
+import {GameStateService} from "../services/game-state.service";
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent {
 
   newRoomName: string
 
   constructor(public appComponent: AppComponent, public websocketService: WebsocketService) { }
-
-  ngOnInit(): void {
-  }
 
   enterRoom(roomName: string): void {
     this.appComponent.loadedRooms = false

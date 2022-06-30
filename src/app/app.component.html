@@ -28,7 +28,7 @@
           <hr>
         </div>
         <div class="error">
-          <h1>{{gameService.error}}</h1>
+          <h1>{{gameStateService.error}}</h1>
         </div>
         <div class="container">
           <app-choose-single-multi *ngIf="loadedChooseSingleMulti"></app-choose-single-multi>
@@ -43,7 +43,7 @@
 
       <td width="300">
         <div class="strip">
-          <p>logged player: {{this.wbsocketService.playerName}}</p>
+          <p>logged player: {{this.websocketService.playerName}}</p>
           <app-players *ngIf="loadedPlayers"></app-players>
           <app-chat *ngIf="loadedChat"></app-chat>
         </div>

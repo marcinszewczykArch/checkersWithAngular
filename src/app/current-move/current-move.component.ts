@@ -7,12 +7,8 @@ import {GameStateService} from "../services/game-state.service";
   templateUrl: './current-move.component.html',
   styleUrls: ['./current-move.component.css']
 })
-export class CurrentMoveComponent implements OnInit {
+export class CurrentMoveComponent {
 
   constructor(public gameService: GameService, public gameStateService: GameStateService) {
   }
-
-  ngOnInit(): void {
-  }
-
 }

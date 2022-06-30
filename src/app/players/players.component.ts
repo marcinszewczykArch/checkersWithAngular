@@ -7,11 +7,8 @@ import {WebsocketService} from "../services/websocket.service";
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css']
 })
-export class PlayersComponent implements OnInit {
+export class PlayersComponent {
 
-  constructor(public appComponent: AppComponent, public websocketService: WebsocketService) { }
-
-  ngOnInit(): void {
-  }
+  constructor(public websocketService: WebsocketService) { }
 
 }

@@ -8,17 +8,13 @@ import {GameStateService} from "../services/game-state.service";
   templateUrl: './board-for-white.component.html',
   styleUrls: ['./board-for-white.component.css']
 })
-export class BoardForWhiteComponent implements OnInit {
+export class BoardForWhiteComponent {
 
   constructor(public gameService: GameService, public gameStateService: GameStateService) {
   }
 
-  action1(id: string) {
-    this.gameService.action1(id)
-  }
-
-  ngOnInit(): void {
-    this.gameService.ngOnInit()
+  makeMoveWhite(id: string) {
+    this.gameService.makeMove(id, 'w')
   }
 
 }

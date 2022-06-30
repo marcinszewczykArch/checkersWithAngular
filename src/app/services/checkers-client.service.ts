@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { HttpHeaders } from '@angular/common/http';
 import {catchError, Observable, of} from "rxjs";
 import {webSocket, WebSocketSubject} from "rxjs/webSocket";
+import {GameStateService} from "./game-state.service";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,19 +16,19 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class CheckersClientService {
+export class CheckersClientService { //todo: HttpService
 
 //BACKEND ON SERVER OR FROM LOCALHOST
   //ROOT = 'https://backvisitting.herokuapp.com';
-  ROOT = 'http://localhost:8081';
+  ROOT = 'http://localhost:9001';
   WS_URL = "ws://localhost:8083/ws/aaa";
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, public gameStateService: GameStateService) {
   }
 
   // @ts-ignore
-  public getState(board: string, currentColour: string, moveFrom: number, moveTo: number): Observable<T | GameState> {
-    return this.httpClient.get<GameState>(this.ROOT + '/api/checkers' +
+  public getState(board: string, currentColour: string, moveFrom: string, moveTo: string): Observable<T | GameState> {
+    return this.httpClient.get<GameState>(this.ROOT + '/checkers' +
       '?board='         + board +
       '&currentColour=' + currentColour +
       '&moveFrom='      + moveFrom +
@@ -37,6 +38,19 @@ export class CheckersClientService {
 
   errorHandler(error: HttpErrorResponse) {
     return of(error.error.message);
+  }
+
+  makeMove(board: string, colour: string, from: string, to: string): void {
+    this.getState(board, colour, from, to).subscribe(
+      newState => {
+        this.gameStateService.board = newState.board
+        this.gameStateService.movesNow = newState.movesNow
+        this.gameStateService.error = null
+      },
+      error => {
+        this.gameStateService.error = error.error
+      }
+    )
   }
 
 }

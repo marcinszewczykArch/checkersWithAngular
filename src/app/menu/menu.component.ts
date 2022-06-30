@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
-  constructor() { }
+  constructor(public appComponent: AppComponent, ) { }
 
-  ngOnInit(): void {
+  goToHomepage() {
+    window.location.reload();
   }
 
 }

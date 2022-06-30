@@ -7,20 +7,23 @@ import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import {CheckersClientService, GameState} from "./checkers-client.service";
 import {GameService} from "./game.service";
 import {GameStateService} from "./game-state.service";
+import {formatDate} from "@angular/common";
+import * as moment from 'moment';
 
 const STATE: string = "/state"
 const MOVE: string = "/move"
 const CHAT: string = "/chat"
+const ERROR: string = "/error"
 
 @Injectable()
 export class WebsocketService {
 
   received: any[] = [];
-  error: any = "error"
   message: string;
   subject: WebSocketSubject<string>;
   playerName: string;
   multiplayerState: MultiplayerState;
+  lastTimestamp: Date | undefined;
 
 
   constructor(public gameStateService: GameStateService) {
@@ -37,29 +40,50 @@ export class WebsocketService {
   makeConnection(): void {
     this.subject.subscribe(
       msg     => {
-      if(msg.startsWith(STATE)) {
-        let newState = msg.replace(STATE,'')
-        this.multiplayerState = JSON.parse(newState)
+        console.log("ws input: " + msg)
+
+      if (msg.startsWith(STATE)) {
+        let state = msg.replace(STATE,'')
+        this.multiplayerState = JSON.parse(state)
+
       } else if(msg.startsWith(MOVE)) {
         let move = msg.replace(MOVE, '')
         let gameState: GameState = JSON.parse(move)
-        this.gameStateService.board = gameState.board
-        this.gameStateService.movesNow = gameState.movesNow
+        this.gameStateService.board       = gameState.board
+        this.gameStateService.movesNow    = gameState.movesNow
+        this.gameStateService.status      = gameState.status
+        this.gameStateService.nextMoveBy  = gameState.nextMoveBy
+
+      } else if(msg.startsWith(CHAT)) {
+        let chatMsg = msg.replace(CHAT, '')
+        this.addTimeStampAndBreakLineAfter5Sec();
+        this.received.push(chatMsg)
+
+      } else if(msg.startsWith(ERROR)) {
+        let errorMsg = msg.replace(ERROR, '')
+        this.gameStateService.error = errorMsg
+
       } else  {
-        this.received.push(msg)
+        this.gameStateService.error = msg
       }
     },
 
-      err     => {this.error = err.error, console.log("ws error: " + err)},
+      err     => {this.gameStateService.error = err.error, console.log("ws error: " + err)},
       ()   => console.log("ws connection is closed")
     )
   }
 
-  sentMessage(message: string): void {
-    if (message.length > 0) {
-      this.subject.next(message);
+
+  addTimeStampAndBreakLineAfter5Sec() {
+    if (this.lastTimestamp === undefined){
+      this.lastTimestamp = new Date();
+
+    } else if(this.lastTimestamp < new Date(Date.now() - 5000)) {
+      this.lastTimestamp = new Date();
+      let time = (moment(this.lastTimestamp)).format('HH:mm:ss')
+      this.received.push("")
+      this.received.push(time)
     }
-    this.message = "";
   }
 
   sentChatMessage(message: string): void {
