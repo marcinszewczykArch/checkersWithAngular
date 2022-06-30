@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Status} from "./checkers-client.service";
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +7,10 @@ import { Injectable } from '@angular/core';
 export class GameStateService {
 
   board: any;
-  currentColour: any;
-
+  movesNow: any;
+  nextMoveBy: any;
+  status: Status;
 
   constructor() { }
 }
+

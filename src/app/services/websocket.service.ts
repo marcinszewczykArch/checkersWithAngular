@@ -44,7 +44,7 @@ export class WebsocketService {
         let move = msg.replace(MOVE, '')
         let gameState: GameState = JSON.parse(move)
         this.gameStateService.board = gameState.board
-        this.gameStateService.currentColour = gameState.movesNow
+        this.gameStateService.movesNow = gameState.movesNow
       } else  {
         this.received.push(msg)
       }

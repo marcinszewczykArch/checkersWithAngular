@@ -18,3 +18,10 @@
   <!--<button (click)="this.websocketService.makeConnection();"><h2>RECONNECT</h2></button>-->
 
 </div>
+
+
+//todo: make it to show players in room
+<table *ngFor="let room of this.websocketService.multiplayerState.rooms" width="100%" class="members">
+  <tr><div id="squareWhite"></div> {{room.players[0]}}</tr>
+  <tr><div id="squareRed"></div> {{room.players[1]}}</tr>
+</table>

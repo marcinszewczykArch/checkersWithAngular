@@ -24,7 +24,7 @@ export class GameService {
     this.hi = Array<string>(31)
 
     //choose your pawn to move
-    if (this.gameStateService.board[id] == this.gameStateService.currentColour) {
+    if (this.gameStateService.board[id] == this.gameStateService.movesNow) {
       this.moveFrom = id
       this.hi[id] = "hi"
       this.moveTo = null
@@ -39,17 +39,17 @@ export class GameService {
     if (this.moveTo != null && this.moveFrom != null) {
 
 //------------------------------------------------start of part is for http connection---------------------------------
-      this.checkersClientService.getState(this.gameStateService.board, this.gameStateService.currentColour, this.moveFrom, this.moveTo).subscribe(
+      this.checkersClientService.getState(this.gameStateService.board, this.gameStateService.movesNow, this.moveFrom, this.moveTo).subscribe(
         newState => {
               this.gameStateService.board = newState.board
-              this.gameStateService.currentColour = newState.movesNow
+              this.gameStateService.movesNow = newState.movesNow
               this.error = null},
       error => {this.error = error.error}
       )
 //------------------------------------------------end of part  for http connection--------------------------------------
 
 //------------------------------------------------start of part is for ws connection------------------------------------
-      this.websocketService.makeMove(this.gameStateService.board, this.gameStateService.currentColour, this.moveFrom, this.moveTo)
+      this.websocketService.makeMove(this.gameStateService.board, this.gameStateService.movesNow, this.moveFrom, this.moveTo)
 //------------------------------------------------end of part  for ws connection----------------------------------------
 
       this.moveTo = null
@@ -60,7 +60,7 @@ export class GameService {
 
   ngOnInit(): void {
     this.gameStateService.board = 'rrrrrrrrrrrroooooooowwwwwwwwwwww' //todo: remove when initial state comes from backend
-    this.gameStateService.currentColour = 'w'//todo: remove when initial state comes from backend
+    this.gameStateService.movesNow = 'w'//todo: remove when initial state comes from backend
 
     webSocket("ws://localhost:8083/ws/").subscribe(
       msg   => {
