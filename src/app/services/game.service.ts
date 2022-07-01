@@ -3,6 +3,7 @@ import {CheckersClientService, GameState} from "./checkers-client.service";
 import {webSocket} from "rxjs/webSocket";
 import {WebsocketService} from "./websocket.service";
 import {GameStateService} from "./game-state.service";
+import {delay} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -44,12 +45,21 @@ export class GameService {  //todo: MoveService
       this.moveTo = id
     }
 
-    //send request to the front and receive new state
+    //send request to the backend and receive new state
     if (this.moveTo != null && this.moveFrom != null) {
 
       if (!this.gameStateService.isGameMultiplayer) { //http connection for singlePlayer
-        this.checkersClientService
-          .makeMove(this.gameStateService.board, this.gameStateService.movesNow, this.moveFrom, this.moveTo)
+        this.checkersClientService.getState(this.gameStateService.board, this.gameStateService.movesNow, this.moveFrom, this.moveTo).subscribe(
+          newState => {
+            this.gameStateService.board = newState.board
+            this.gameStateService.movesNow = newState.movesNow
+            this.gameStateService.movesNow2.next( newState.movesNow)
+            this.gameStateService.error = null
+          },
+          error => {
+            this.gameStateService.error = error.error
+          }
+        )
 
       } else { //ws connection for multiPlayer
         this.websocketService
@@ -63,10 +73,29 @@ export class GameService {  //todo: MoveService
     }
   }
 
-  makeMoveAi(colour: string) {
-    if (!this.gameStateService.isGameMultiplayer && this.gameStateService.movesNow == colour) {
-      //  this.checkersClientService.makeMoveAi(this.gameStateService.board, this.gameStateService.movesNow) <- this goes to service
+  makeMoveAi(colourAi: string) {
+    if (!this.gameStateService.isGameMultiplayer && this.gameStateService.movesNow == colourAi) {
+       // this.sleep(1000)
+
+      this.checkersClientService.getStateAi(this.gameStateService.board, colourAi).subscribe(
+        newState => {
+          this.gameStateService.board = newState.board
+          this.gameStateService.movesNow = newState.movesNow
+          this.gameStateService.error = null
+        },
+        error => {
+          this.gameStateService.error = error.error
+        }
+      )
     }
+  }
+
+  sleep(milliseconds: number) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
   }
 
 }

@@ -38,7 +38,7 @@ export class CheckersClientService { //todo: HttpService
 
   // @ts-ignore
   public getStateAi(board: string, currentColour: string): Observable<T | GameState> {
-    return this.httpClient.get<GameState>(this.ROOT + '/checkers/Ai' +
+    return this.httpClient.get<GameState>(this.ROOT + '/checkersAi' +
       '?board='         + board +
       '&currentColour=' + currentColour)
   }
@@ -47,18 +47,18 @@ export class CheckersClientService { //todo: HttpService
     return of(error.error.message);
   }
 
-  makeMove(board: string, colour: string, from: string, to: string): void {
-    this.getState(board, colour, from, to).subscribe(
-      newState => {
-        this.gameStateService.board = newState.board
-        this.gameStateService.movesNow = newState.movesNow
-        this.gameStateService.error = null
-      },
-      error => {
-        this.gameStateService.error = error.error
-      }
-    )
-  }
+  // makeMove(board: string, colour: string, from: string, to: string): void {
+  //   this.getState(board, colour, from, to).subscribe(
+  //     newState => {
+  //       this.gameStateService.board = newState.board
+  //       this.gameStateService.movesNow = newState.movesNow
+  //       this.gameStateService.error = null
+  //     },
+  //     error => {
+  //       this.gameStateService.error = error.error
+  //     }
+  //   )
+  // }
 
   makeMoveAi(board: string, colour: string): void {
     this.getStateAi(board, colour).subscribe(
