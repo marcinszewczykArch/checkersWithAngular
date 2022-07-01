@@ -23,7 +23,7 @@ export class GameService {  //todo: MoveService
       return;
     }
 
-    //block to start multiplayer game if there is no opponent
+    //todo: block to start multiplayer game if there is no opponent
     // if (this.gameStateService.isGameMultiplayer && room.members.size < 2) {
     //   send error("wait for your opponent to start a game")
     //   return;
@@ -47,11 +47,11 @@ export class GameService {  //todo: MoveService
     //send request to the front and receive new state
     if (this.moveTo != null && this.moveFrom != null) {
 
-      if (!this.gameStateService.isGameMultiplayer) { //http connection
+      if (!this.gameStateService.isGameMultiplayer) { //http connection for singlePlayer
         this.checkersClientService
           .makeMove(this.gameStateService.board, this.gameStateService.movesNow, this.moveFrom, this.moveTo)
 
-      } else { //ws connection
+      } else { //ws connection for multiPlayer
         this.websocketService
           .makeMove(this.gameStateService.board, this.gameStateService.movesNow, this.moveFrom, this.moveTo)
       }
@@ -60,6 +60,12 @@ export class GameService {  //todo: MoveService
       this.moveTo = null
       this.moveFrom = null
       this.highlight[id] = null
+    }
+  }
+
+  makeMoveAi(colour: string) {
+    if (!this.gameStateService.isGameMultiplayer && this.gameStateService.movesNow == colour) {
+      //  this.checkersClientService.makeMoveAi(this.gameStateService.board, this.gameStateService.movesNow) <- this goes to service
     }
   }
 

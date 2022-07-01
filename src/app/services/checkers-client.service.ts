@@ -36,12 +36,32 @@ export class CheckersClientService { //todo: HttpService
       // .pipe(catchError(this.errorHandler));
   }
 
+  // @ts-ignore
+  public getStateAi(board: string, currentColour: string): Observable<T | GameState> {
+    return this.httpClient.get<GameState>(this.ROOT + '/checkers/Ai' +
+      '?board='         + board +
+      '&currentColour=' + currentColour)
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return of(error.error.message);
   }
 
   makeMove(board: string, colour: string, from: string, to: string): void {
     this.getState(board, colour, from, to).subscribe(
+      newState => {
+        this.gameStateService.board = newState.board
+        this.gameStateService.movesNow = newState.movesNow
+        this.gameStateService.error = null
+      },
+      error => {
+        this.gameStateService.error = error.error
+      }
+    )
+  }
+
+  makeMoveAi(board: string, colour: string): void {
+    this.getStateAi(board, colour).subscribe(
       newState => {
         this.gameStateService.board = newState.board
         this.gameStateService.movesNow = newState.movesNow

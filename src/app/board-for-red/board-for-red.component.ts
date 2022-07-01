@@ -14,6 +14,9 @@ export class BoardForRedComponent {
 
   makeMoveRed(id: string) {
     this.gameService.makeMove(id, "r")
+    this.gameService.makeMoveAi("w")
   }
+
+
 
 }
