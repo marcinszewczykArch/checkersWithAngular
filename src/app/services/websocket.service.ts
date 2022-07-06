@@ -43,11 +43,11 @@ export class WebsocketService {
         console.log("ws input: " + msg)
 
       if (msg.startsWith(STATE)) {
-        let state = msg.replace(STATE,'')
+        let state = msg.replace(STATE,'').trim()
         this.multiplayerState = JSON.parse(state)
 
       } else if(msg.startsWith(MOVE)) {
-        let move = msg.replace(MOVE, '')
+        let move = msg.replace(MOVE, '').trim()
         let gameState: GameState = JSON.parse(move)
         this.gameStateService.board       = gameState.board
         this.gameStateService.movesNow    = gameState.movesNow
@@ -55,12 +55,12 @@ export class WebsocketService {
         this.gameStateService.nextMoveBy  = gameState.nextMoveBy
 
       } else if(msg.startsWith(CHAT)) {
-        let chatMsg = msg.replace(CHAT, '')
+        let chatMsg = msg.replace(CHAT, '').trim()
         this.addTimeStampAndBreakLineAfter5Sec();
         this.received.push(chatMsg)
 
       } else if(msg.startsWith(ERROR)) {
-        let errorMsg = msg.replace(ERROR, '')
+        let errorMsg = msg.replace(ERROR, '').trim()
         this.gameStateService.error = errorMsg
 
       } else  {

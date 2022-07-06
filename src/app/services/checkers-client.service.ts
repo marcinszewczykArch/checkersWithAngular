@@ -20,7 +20,7 @@ export class CheckersClientService { //todo: HttpService
 
 //BACKEND ON SERVER OR FROM LOCALHOST
   //ROOT = 'https://backvisitting.herokuapp.com';
-  ROOT = 'http://localhost:9001';
+  ROOT = 'http://localhost:9000';
   WS_URL = "ws://localhost:8083/ws/aaa";
 
   constructor(private httpClient: HttpClient, public gameStateService: GameStateService) {
