@@ -53,7 +53,8 @@ export class GameService {  //todo: MoveService
           newState => {
             this.gameStateService.board = newState.board
             this.gameStateService.movesNow = newState.movesNow
-            this.gameStateService.movesNow2.next( newState.movesNow)
+            this.gameStateService.nextMoveBy = newState.nextMoveBy
+            this.gameStateService.movesNow2.next(newState.movesNow)
             this.gameStateService.error = null
           },
           error => {
@@ -75,27 +76,22 @@ export class GameService {  //todo: MoveService
 
   makeMoveAi(colourAi: string) {
     if (!this.gameStateService.isGameMultiplayer && this.gameStateService.movesNow == colourAi) {
-       // this.sleep(1000)
 
       this.checkersClientService.getStateAi(this.gameStateService.board, colourAi).subscribe(
         newState => {
           this.gameStateService.board = newState.board
           this.gameStateService.movesNow = newState.movesNow
+          this.gameStateService.nextMoveBy = newState.nextMoveBy
+          this.gameStateService.movesNow2.next(newState.movesNow)
           this.gameStateService.error = null
+
         },
         error => {
           this.gameStateService.error = error.error
         }
       )
     }
-  }
 
-  sleep(milliseconds: number) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
   }
 
 }

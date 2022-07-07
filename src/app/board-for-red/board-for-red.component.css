@@ -9,6 +9,12 @@ table{
   margin-right: auto;
 }
 
+p{
+  color: #818181;
+  margin-right: -20%;
+  font-stretch: ultra-condensed;
+}
+
 td{
   width: calc(90vw/8);
   height: calc(90vw/8);
@@ -46,6 +52,8 @@ button{
   position: center;
   top: 2px;
   left: 10px;
+  text-align: right;
+  line-height: 120px;
 }
 
 .o{
@@ -55,9 +63,15 @@ button{
 .r{
   background-color: red;
 }
+.R{
+  background-color: #2768e8;
+}
 
 .w{
   background-color: antiquewhite;
+}
+.W{
+  background-color: #84a6ee;
 }
 
 
