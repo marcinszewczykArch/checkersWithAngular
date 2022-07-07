@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { PlayersComponent } from './players/players.component';
+import { RulesComponent } from './rules/rules.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PlayersComponent } from './players/players.component';
     ChatComponent,
     RoomsComponent,
     PlayersComponent,
+    RulesComponent,
   ],
   imports: [
     BrowserModule,

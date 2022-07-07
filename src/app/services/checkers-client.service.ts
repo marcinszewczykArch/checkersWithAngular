@@ -36,6 +36,10 @@ export class CheckersClientService { //todo: HttpService
       // .pipe(catchError(this.errorHandler));
   }
 
+  public getStatePost(move: Move): Observable<GameState> {
+    return this.httpClient.post<GameState>(this.ROOT + '/checkers', move)
+  }
+
   // @ts-ignore
   public getStateAi(board: string, currentColour: string): Observable<T | GameState> {
     return this.httpClient.get<GameState>(this.ROOT + '/checkersAi' +
@@ -85,3 +89,10 @@ export class CheckersClientService { //todo: HttpService
     board: string;
     nextMoveBy: string;
   }
+
+export interface Move {
+  board: string,
+  currentColour: string,
+  moveFrom: string,
+  moveTo: string
+}

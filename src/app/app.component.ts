@@ -24,8 +24,26 @@ export class AppComponent implements OnInit {
   loadedChat: Boolean = false;
   loadedRooms: Boolean = false;
   loadedPlayers: Boolean = false;
+  loadedRules: Boolean = false;
 
   constructor(public gameService: GameService, public websocketService: WebsocketService, public gameStateService: GameStateService) {
+  }
+
+  cleanContainer() {
+    this.loadedChooseColour = false;
+    this.loadedWhite = false;
+    this.loadedRed = false;
+    this.loadedCurrentMove = false;
+
+    this.loadedChooseSingleMulti = false;
+    this.loadedSinglePlayer = false;
+    this.loadedMultiPlayer = false;
+
+    this.loadedLogin = false;
+    this.loadedChat = false;
+    this.loadedRooms = false;
+    this.loadedPlayers = false;
+    this.loadedRules = false;
   }
 
   ngOnInit(): void {

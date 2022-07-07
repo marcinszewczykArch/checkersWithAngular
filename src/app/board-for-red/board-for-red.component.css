@@ -42,6 +42,7 @@ tr:nth-of-type(even) td:nth-of-type(even){
 td{
   width: 100px;
   height: 100px;
+  vertical-align: center;
 }
 
 button{
@@ -53,7 +54,7 @@ button{
   top: 2px;
   left: 10px;
   text-align: right;
-  line-height: 120px;
+  line-height: 110px;
 }
 
 .o{
@@ -64,16 +65,21 @@ button{
   background-color: red;
 }
 .R{
-  background-color: #2768e8;
+  background-color: red;
+  outline: 3px solid red;
+  border: 3px solid black;
+  cursor: pointer;
 }
 
 .w{
   background-color: antiquewhite;
 }
 .W{
-  background-color: #84a6ee;
+  background-color: antiquewhite;
+  outline: 3px solid antiquewhite;
+  border: 3px solid black;
+  cursor: pointer;
 }
-
 
 /*colour for selected pawn*/
 .hi {

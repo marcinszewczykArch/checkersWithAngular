@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CheckersClientService, GameState} from "./checkers-client.service";
+import {CheckersClientService, GameState, Status} from "./checkers-client.service";
 import {webSocket} from "rxjs/webSocket";
 import {WebsocketService} from "./websocket.service";
 import {GameStateService} from "./game-state.service";
@@ -34,7 +34,7 @@ export class GameService {  //todo: MoveService
     this.highlight = Array<string>(31)
 
     //choose your pawn to move
-    if (this.gameStateService.board[id] == this.gameStateService.movesNow) {
+    if (this.gameStateService.board[id].toLowerCase() == this.gameStateService.movesNow) {
       this.moveFrom = id
       this.moveTo = null
       this.highlight[id] = "hi"
@@ -56,6 +56,11 @@ export class GameService {  //todo: MoveService
             this.gameStateService.nextMoveBy = newState.nextMoveBy
             this.gameStateService.movesNow2.next(newState.movesNow)
             this.gameStateService.error = null
+
+            //todo: alert if end of game to be separated to other method. Show new page with stats.
+            if (newState.status.tag != "ongoing") {
+              let wannaNextGame = window.confirm(newState.status.tag)
+            }
           },
           error => {
             this.gameStateService.error = error.error

@@ -14,4 +14,9 @@ export class MenuComponent {
     window.location.reload();
   }
 
+  goToRules() {
+    this.appComponent.cleanContainer();
+    this.appComponent.loadedRules = true;
+  }
+
 }
