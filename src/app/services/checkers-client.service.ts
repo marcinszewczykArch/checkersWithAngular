@@ -31,6 +31,8 @@ export class CheckersClientService { //todo: HttpService
     return this.httpClient.get<GameState>(this.ROOT + '/checkers' +
       '?board='         + board +
       '&currentColour=' + currentColour +
+      '&nextMoveBy='    + "None" + //todo: add parameter
+      '&status='        + "ongoing" + //todo: add parameter
       '&moveFrom='      + moveFrom +
       '&moveTo='        + moveTo)
       // .pipe(catchError(this.errorHandler));
@@ -44,7 +46,9 @@ export class CheckersClientService { //todo: HttpService
   public getStateAi(board: string, currentColour: string): Observable<T | GameState> {
     return this.httpClient.get<GameState>(this.ROOT + '/checkersAi' +
       '?board='         + board +
-      '&currentColour=' + currentColour)
+      '&currentColour=' + currentColour +
+      '&nextMoveBy='    + "None" + //todo: add parameter
+      '&status='        + "ongoing") //todo: add parameter
   }
 
   errorHandler(error: HttpErrorResponse) {

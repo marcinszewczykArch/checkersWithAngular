@@ -86,8 +86,8 @@ export class GameService {  //todo: MoveService
         newState => {
           this.gameStateService.board = newState.board
           this.gameStateService.movesNow = newState.movesNow
+          this.gameStateService.movesNow2.next(newState.movesNow) //todo: this is only to subscribe
           this.gameStateService.nextMoveBy = newState.nextMoveBy
-          this.gameStateService.movesNow2.next(newState.movesNow)
           this.gameStateService.error = null
 
         },
