@@ -19,20 +19,19 @@ const httpOptions = {
 export class CheckersClientService { //todo: HttpService
 
 //BACKEND ON SERVER OR FROM LOCALHOST
-  //ROOT = 'https://backvisitting.herokuapp.com';
-  ROOT = 'http://localhost:9000';
-  WS_URL = "ws://localhost:8083/ws/aaa";
+  ROOT = 'https://checkersone.herokuapp.com';
+  // ROOT = 'http://localhost:9000';
 
   constructor(private httpClient: HttpClient, public gameStateService: GameStateService) {
   }
 
   // @ts-ignore
-  public getState(board: string, currentColour: string, moveFrom: string, moveTo: string): Observable<T | GameState> {
+  public getState(board: string, currentColour: string, nextMoveBy: string, status: string, moveFrom: string, moveTo: string): Observable<T | GameState> {
     return this.httpClient.get<GameState>(this.ROOT + '/checkers' +
       '?board='         + board +
       '&currentColour=' + currentColour +
-      '&nextMoveBy='    + "None" + //todo: add parameter
-      '&status='        + "ongoing" + //todo: add parameter
+      '&nextMoveBy='    + nextMoveBy +
+      '&status='        + status +
       '&moveFrom='      + moveFrom +
       '&moveTo='        + moveTo)
       // .pipe(catchError(this.errorHandler));
@@ -43,12 +42,12 @@ export class CheckersClientService { //todo: HttpService
   }
 
   // @ts-ignore
-  public getStateAi(board: string, currentColour: string): Observable<T | GameState> {
+  public getStateAi(board: string, currentColour: string, nextMoveBy: string, status: string): Observable<T | GameState> {
     return this.httpClient.get<GameState>(this.ROOT + '/checkersAi' +
       '?board='         + board +
       '&currentColour=' + currentColour +
-      '&nextMoveBy='    + "None" + //todo: add parameter
-      '&status='        + "ongoing") //todo: add parameter
+      '&nextMoveBy='    + nextMoveBy +
+      '&status='        + status)
   }
 
   errorHandler(error: HttpErrorResponse) {
@@ -68,27 +67,27 @@ export class CheckersClientService { //todo: HttpService
   //   )
   // }
 
-  makeMoveAi(board: string, colour: string): void {
-    this.getStateAi(board, colour).subscribe(
-      newState => {
-        this.gameStateService.board = newState.board
-        this.gameStateService.movesNow = newState.movesNow
-        this.gameStateService.error = null
-      },
-      error => {
-        this.gameStateService.error = error.error
-      }
-    )
-  }
+  // makeMoveAi(board: string, colour: string): void {
+  //   this.getStateAi(board, colour).subscribe(
+  //     newState => {
+  //       this.gameStateService.board = newState.board
+  //       this.gameStateService.movesNow = newState.movesNow
+  //       this.gameStateService.error = null
+  //     },
+  //     error => {
+  //       this.gameStateService.error = error.error
+  //     }
+  //   )
+  // }
 
 }
 
-  export interface Status {
-    tag: string;
-  }
+  // export interface Status {
+  //   tag: string;
+  // }
 
   export interface GameState {
-    status: Status;
+    status: string;
     movesNow: string;
     board: string;
     nextMoveBy: string;

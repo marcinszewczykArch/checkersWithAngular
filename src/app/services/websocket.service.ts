@@ -18,6 +18,10 @@ const ERROR: string = "/error"
 @Injectable()
 export class WebsocketService {
 
+  //BACKEND ON SERVER OR FROM LOCALHOST
+  ROOT = 'ws://checkersone.herokuapp.com/ws/';
+  // ROOT = 'ws://localhost:9000/ws/';
+
   received: any[] = [];
   message: string;
   subject: WebSocketSubject<string>;
@@ -32,7 +36,7 @@ export class WebsocketService {
   initializeWebsocket(playerName: string) {
     this.subject = webSocket(
       {
-        url: "ws://localhost:9000/ws/" + playerName,
+        url: this.ROOT + playerName,
         deserializer: e => e.data
       })
   }

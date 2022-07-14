@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CheckersClientService, GameState, Status} from "./checkers-client.service";
+import {CheckersClientService, GameState} from "./checkers-client.service";
 import {webSocket} from "rxjs/webSocket";
 import {WebsocketService} from "./websocket.service";
 import {GameStateService} from "./game-state.service";
@@ -49,16 +49,23 @@ export class GameService {  //todo: MoveService
     if (this.moveTo != null && this.moveFrom != null) {
 
       if (!this.gameStateService.isGameMultiplayer) { //http connection for singlePlayer
-        this.checkersClientService.getState(this.gameStateService.board, this.gameStateService.movesNow, this.moveFrom, this.moveTo).subscribe(
+        this.checkersClientService.getState(
+          this.gameStateService.board,
+          this.gameStateService.movesNow,
+          this.gameStateService.nextMoveBy,
+          this.gameStateService.status,
+          this.moveFrom,
+          this.moveTo).subscribe(
           newState => {
             this.gameStateService.board = newState.board
             this.gameStateService.movesNow = newState.movesNow
             this.gameStateService.nextMoveBy = newState.nextMoveBy
+            this.gameStateService.status = newState.status
             this.gameStateService.movesNow2.next(newState.movesNow)
             this.gameStateService.error = null
 
             //todo: alert if end of game to be separated to other method. Show new page with stats.
-            if (newState.status.tag != "ongoing") {
+            if (newState.status != "ongoing") {
               let wannaNextGame = window.confirm(newState.status.tag)
             }
           },
@@ -82,10 +89,12 @@ export class GameService {  //todo: MoveService
   makeMoveAi(colourAi: string) {
     if (!this.gameStateService.isGameMultiplayer && this.gameStateService.movesNow == colourAi) {
 
-      this.checkersClientService.getStateAi(this.gameStateService.board, colourAi).subscribe(
+      this.checkersClientService.getStateAi(this.gameStateService.board, colourAi, this.gameStateService.nextMoveBy, this.gameStateService.status).subscribe(
         newState => {
           this.gameStateService.board = newState.board
           this.gameStateService.movesNow = newState.movesNow
+          this.gameStateService.nextMoveBy = newState.nextMoveBy
+          this.gameStateService.status = newState.status
           this.gameStateService.movesNow2.next(newState.movesNow) //todo: this is only to subscribe
           this.gameStateService.nextMoveBy = newState.nextMoveBy
           this.gameStateService.error = null
