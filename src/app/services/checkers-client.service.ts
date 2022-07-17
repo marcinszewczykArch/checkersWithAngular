@@ -19,8 +19,8 @@ const httpOptions = {
 export class CheckersClientService { //todo: HttpService
 
 //BACKEND ON SERVER OR FROM LOCALHOST
-//   ROOT = 'https://checkersone.herokuapp.com';
-  ROOT = 'http://localhost:9000';
+  ROOT = 'https://checkersone.herokuapp.com';
+//   ROOT = 'http://localhost:9000';
 
   constructor(private httpClient: HttpClient, public gameStateService: GameStateService) {
   }
