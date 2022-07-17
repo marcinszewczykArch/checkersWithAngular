@@ -10,6 +10,7 @@ import {GameStateService} from "./services/game-state.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title = 'checkersWithAngular';
 
   loadedChooseColour: Boolean = false;
   loadedWhite: Boolean = false;

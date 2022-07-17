@@ -19,8 +19,8 @@ const httpOptions = {
 export class CheckersClientService { //todo: HttpService
 
 //BACKEND ON SERVER OR FROM LOCALHOST
-  ROOT = 'https://checkersone.herokuapp.com';
-  // ROOT = 'http://localhost:9000';
+//   ROOT = 'https://checkersone.herokuapp.com';
+  ROOT = 'http://localhost:9000';
 
   constructor(private httpClient: HttpClient, public gameStateService: GameStateService) {
   }
@@ -34,12 +34,16 @@ export class CheckersClientService { //todo: HttpService
       '&status='        + status +
       '&moveFrom='      + moveFrom +
       '&moveTo='        + moveTo)
-      // .pipe(catchError(this.errorHandler));
   }
 
-  public getStatePost(move: Move): Observable<GameState> {
-    return this.httpClient.post<GameState>(this.ROOT + '/checkers', move)
+  // @ts-ignore
+  public getInitialState(): Observable<T | GameState> {
+    return this.httpClient.get<GameState>(this.ROOT + '/initialstate')
   }
+
+  // public getStatePost(move: Move): Observable<GameState> {
+  //   return this.httpClient.post<GameState>(this.ROOT + '/checkers', move)
+  // }
 
   // @ts-ignore
   public getStateAi(board: string, currentColour: string, nextMoveBy: string, status: string): Observable<T | GameState> {
@@ -50,52 +54,25 @@ export class CheckersClientService { //todo: HttpService
       '&status='        + status)
   }
 
-  errorHandler(error: HttpErrorResponse) {
-    return of(error.error.message);
-  }
-
-  // makeMove(board: string, colour: string, from: string, to: string): void {
-  //   this.getState(board, colour, from, to).subscribe(
-  //     newState => {
-  //       this.gameStateService.board = newState.board
-  //       this.gameStateService.movesNow = newState.movesNow
-  //       this.gameStateService.error = null
-  //     },
-  //     error => {
-  //       this.gameStateService.error = error.error
-  //     }
-  //   )
-  // }
-
-  // makeMoveAi(board: string, colour: string): void {
-  //   this.getStateAi(board, colour).subscribe(
-  //     newState => {
-  //       this.gameStateService.board = newState.board
-  //       this.gameStateService.movesNow = newState.movesNow
-  //       this.gameStateService.error = null
-  //     },
-  //     error => {
-  //       this.gameStateService.error = error.error
-  //     }
-  //   )
-  // }
 
 }
 
-  // export interface Status {
-  //   tag: string;
-  // }
 
-  export interface GameState {
-    status: string;
-    movesNow: string;
-    board: string;
-    nextMoveBy: string;
-  }
-
-export interface Move {
-  board: string,
-  currentColour: string,
-  moveFrom: string,
-  moveTo: string
+export interface MultiplayerState {
+  players: string[];
+  rooms: Room[];
 }
+
+export interface Room {
+  name: string;
+  players: string[];
+  gameState: GameState;
+}
+
+export interface GameState {
+  status: string;
+  movesNow: string;
+  board: string;
+  nextMoveBy: string;
+}
+

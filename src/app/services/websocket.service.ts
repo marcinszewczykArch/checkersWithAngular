@@ -1,17 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Observable, Observer } from 'rxjs';
-import { AnonymousSubject } from 'rxjs/internal/Subject';
-import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
-import {CheckersClientService, GameState} from "./checkers-client.service";
-import {GameService} from "./game.service";
 import {GameStateService} from "./game-state.service";
-import {formatDate} from "@angular/common";
 import * as moment from 'moment';
+import {MultiplayerState, GameState, Room} from "./checkers-client.service";
 
 const STATE: string = "/state"
-const MOVE: string = "/move"
 const CHAT: string = "/chat"
 const ERROR: string = "/error"
 
@@ -19,8 +12,8 @@ const ERROR: string = "/error"
 export class WebsocketService {
 
   //BACKEND ON SERVER OR FROM LOCALHOST
-  ROOT = 'ws://checkersone.herokuapp.com/ws/';
-  // ROOT = 'ws://localhost:9000/ws/';
+  // ROOT = 'ws://checkersone.herokuapp.com/ws/';
+  ROOT = 'ws://localhost:9000/ws/';
 
   received: any[] = [];
   message: string;
@@ -41,6 +34,7 @@ export class WebsocketService {
       })
   }
 
+  //incoming messages
   makeConnection(): void {
     this.subject.subscribe(
       msg     => {
@@ -48,11 +42,11 @@ export class WebsocketService {
 
       if (msg.startsWith(STATE)) {
         let state = msg.replace(STATE,'').trim()
-        this.multiplayerState = JSON.parse(state)
+        let newState = JSON.parse(state)
+        this.multiplayerState = newState
+        // @ts-ignore
+        let gameState: GameState = this.multiplayerState.rooms.find(room => room.name == this.gameStateService.roomName).gameState
 
-      } else if(msg.startsWith(MOVE)) {
-        let move = msg.replace(MOVE, '').trim()
-        let gameState: GameState = JSON.parse(move)
         this.gameStateService.board       = gameState.board
         this.gameStateService.movesNow    = gameState.movesNow
         this.gameStateService.status      = gameState.status
@@ -77,7 +71,7 @@ export class WebsocketService {
     )
   }
 
-
+  //outgoing messages
   addTimeStampAndBreakLineAfter5Sec() {
     if (this.lastTimestamp === undefined){
       this.lastTimestamp = new Date();
@@ -97,14 +91,15 @@ export class WebsocketService {
     this.message = "";
   }
 
-  makeMove(board: string, colour: string, from: string, to: string): void {
-    this.subject.next("/move " + board + " " + colour + " " + from + " " + to);
+  makeMove(from: string, to: string): void {
+    this.subject.next("/move " + from + " " + to);
     this.message = "";
   }
 
-  joinRoom(roomName: string): void {
-    this.subject.next("/room " + roomName);
+  createNewRoom(newRoomName: string): void {
+    this.subject.next("/room " + newRoomName);
     this.message = "";
+    this.gameStateService.roomName = newRoomName
   }
 
   leaveRoom(): void {
@@ -112,28 +107,10 @@ export class WebsocketService {
     this.message = "";
   }
 
-  makeComplete(): void {
-    this.subject.complete();
-  }
-
-  makeError(): void {
-    this.subject.error("broken!")
-  }
-
-
-  createNewRoom(newRoomName: string): void {
-    this.subject.next("/room " + newRoomName);
+  joinRoom(roomName: string): void {
+    this.subject.next("/room " + roomName);
     this.message = "";
+    this.gameStateService.roomName = roomName
   }
-
 }
 
-export interface Room {
-  name: string;
-  players: string[];
-}
-
-export interface MultiplayerState {
-  players: string[];
-  rooms: Room[];
-}

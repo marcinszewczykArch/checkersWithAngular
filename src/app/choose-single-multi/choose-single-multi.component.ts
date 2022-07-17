@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GameService} from "../services/game.service";
 import {AppComponent} from "../app.component";
 import {GameStateService} from "../services/game-state.service";
+import {CheckersClientService} from "../services/checkers-client.service";
 
 @Component({
   selector: 'app-choose-single-multi',
@@ -10,7 +11,7 @@ import {GameStateService} from "../services/game-state.service";
 })
 export class ChooseSingleMultiComponent {
 
-  constructor(public appComponent: AppComponent, public gameStateService: GameStateService) {
+  constructor(public appComponent: AppComponent, public gameStateService: GameStateService, public gameService: GameService) {
   }
 
   loadMultiPlayer() {
@@ -23,6 +24,9 @@ export class ChooseSingleMultiComponent {
     this.gameStateService.isGameMultiplayer = false
     this.appComponent.loadedChooseColour = true
     this.appComponent.loadedChooseSingleMulti = false
+    this.gameService.getInitialState()
   }
+
+
 
 }

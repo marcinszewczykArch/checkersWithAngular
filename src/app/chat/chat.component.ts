@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {WebsocketService} from "../services/websocket.service";
 import {AppComponent} from "../app.component";
 import {GameStateService} from "../services/game-state.service";
@@ -10,7 +10,8 @@ import {GameStateService} from "../services/game-state.service";
 })
 export class ChatComponent {
 
-  constructor(public appComponent: AppComponent, public websocketService: WebsocketService, public gameStateService: GameStateService) { }
+  constructor(public appComponent: AppComponent, public websocketService: WebsocketService, public gameStateService: GameStateService) {
+  }
 
   giveUp(): void {
     this.websocketService.leaveRoom()
