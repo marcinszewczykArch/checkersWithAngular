@@ -1,28 +1,31 @@
-<p>saved games</p>
+<body>
+  <p>saved games</p>
 
-<table class="states">
+  <table class="states">
 
-  <thead>
-    <th> timestamp</th>
-    <th> status</th>
-    <th> movesNow</th>
-    <th> board</th>
-    <th> nextMoveBy</th>
-  </thead>
+    <thead>
+      <th> timestamp</th>
+      <th> status</th>
+      <th> movesNow</th>
+      <th> board</th>
+      <th> nextMoveBy</th>
+    </thead>
 
-  <tbody>
-  <ng-container *ngFor="let state of savedStates">
-    <tr>
-      <td>{{state.timestamp}}</td>
-      <td>{{state.status}}</td>
-      <td>{{state.movesNow}}</td>
-      <td>{{state.board}}</td>
-      <td>{{state.nextMoveBy}}</td>
-    </tr>
-  </ng-container>
-  </tbody>
+    <tbody>
+    <ng-container *ngFor="let state of savedStates">
+      <tr>
+        <td>{{state.timestamp}}</td>
+        <td>{{state.status}}</td>
+        <td>{{state.movesNow}}</td>
+        <td>{{state.board}}</td>
+        <td>{{state.nextMoveBy}}</td>
+      </tr>
+    </ng-container>
+    </tbody>
 
-</table>
+  </table>
+
+</body>
 
 
 

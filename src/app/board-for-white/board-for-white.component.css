@@ -1,3 +1,6 @@
+body {
+  background-color: #ffffff;
+}
 table{
   /*margin-left:200px;*/
   border-collapse: collapse;
@@ -86,6 +89,10 @@ button{
 /*colour for selected pawn*/
 .hi {
   opacity: 0.8
+}
+
+button:hover {
+  opacity: 0.9
 }
 
 

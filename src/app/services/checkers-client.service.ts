@@ -46,6 +46,11 @@ export class CheckersClientService { //todo: HttpService
     return this.httpClient.get<GameStateTo>(this.ROOT + '/state')
   }
 
+  // @ts-ignore
+  public saveGame(): Observable<T | GameStateTo> {
+    // return this.httpClient.post<GameStateTo>(this.ROOT + '/state')
+  }
+
   // public getStatePost(move: Move): Observable<GameState> {
   //   return this.httpClient.post<GameState>(this.ROOT + '/checkers', move)
   // }

@@ -1,9 +1,13 @@
-/* max szerokość kolumny 1800px i wyśrodkowanie */
-.container {
-  max-width: 1800px;
-  margin: 0 auto;
-  text-align: center;
+body {
+  background-color: #ffffff;
 }
+
+/*!* max szerokość kolumny 1800px i wyśrodkowanie *!*/
+/*.container {*/
+/*  max-width: 1800px;*/
+/*  margin: 0 auto;*/
+/*  text-align: center;*/
+/*}*/
 
 button {
   width: 700px;

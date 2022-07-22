@@ -1,11 +1,15 @@
-currentMove:
+<body>
 
+  <div *ngIf="gameStateService.movesNow=='r'">
+    <button class="red"></button>
+  </div>
 
-<div *ngIf="gameStateService.movesNow=='r'">
-  <button class="red"></button>
-</div>
+  <div *ngIf="gameStateService.movesNow=='w'">
+    <button class="white"></button>
+  </div>
 
-<div *ngIf="gameStateService.movesNow=='w'">
-  <button class="white"></button>
-</div>
-<br>
+  <br>
+
+  CURRENT COLOUR
+
+</body>

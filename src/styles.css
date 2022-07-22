@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  display: table;
+  margin: auto;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  horiz-align: center;
+  background-color: #f6f6f6;
+}

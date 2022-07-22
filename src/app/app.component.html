@@ -1,16 +1,8 @@
 <body>
   <div class="webpage">
 
-  <table id="main">
+  <table id="main" class="main">
     <tr>
-
-      <td width="300">
-        <div class="strip">
-          <div class="currentMove">
-            <app-current-move *ngIf="loadedCurrentMove"></app-current-move>
-          </div>
-        </div>
-      </td>
 
       <td bgcolor="white">
         <div class="menu">
@@ -21,30 +13,54 @@
           <h1>{{gameStateService.error}}</h1>
         </div>
         <div class="container">
-          <app-choose-single-multi *ngIf="loadedChooseSingleMulti"></app-choose-single-multi>
-          <app-choose-colour *ngIf="loadedChooseColour"></app-choose-colour>
-          <app-board-for-white *ngIf="loadedWhite"></app-board-for-white>
-          <app-board-for-red *ngIf="loadedRed"></app-board-for-red>
-          <app-login *ngIf="loadedLogin"></app-login>
-          <app-rooms *ngIf="loadedRooms"></app-rooms>
-          <app-rules *ngIf="loadedRules"></app-rules>
-          <app-saved-games *ngIf="loadedSavedGames"></app-saved-games>
-          <br>
-        </div>
-      </td>
 
-      <td width="300">
-        <div class="strip">
-          <p>logged player: {{this.websocketService.playerName}}</p>
-          <app-players *ngIf="loadedPlayers"></app-players>
-          <app-chat *ngIf="loadedChat"></app-chat>
+          <table class="board">
+            <tr>
+              <th style="width:20%">
+                <app-current-move *ngIf="loadedCurrentMove"></app-current-move>
+              </th>
+              <th style="width:60%">
+                <app-choose-single-multi *ngIf="loadedChooseSingleMulti"></app-choose-single-multi>
+                <app-choose-colour *ngIf="loadedChooseColour"></app-choose-colour>
+
+                <app-login *ngIf="loadedLogin"></app-login>
+                <app-rooms *ngIf="loadedRooms"></app-rooms>
+                <app-players *ngIf="loadedPlayers"></app-players>
+                <app-rules *ngIf="loadedRules"></app-rules>
+
+
+                <app-board-for-white *ngIf="loadedWhite"></app-board-for-white>
+                <app-board-for-red *ngIf="loadedRed"></app-board-for-red>
+
+
+                <app-chat *ngIf="loadedChat"></app-chat>
+                <app-saved-games *ngIf="loadedSavedGames"></app-saved-games>
+              </th>
+              <th style="width:20%">
+                {{this.websocketService.playerName}}
+              </th>
+            </tr>
+          </table>
+
+<!--            <table class="board">-->
+<!--            <tr>-->
+<!--              <th style="width:20%"></th>-->
+<!--              <th style="width:60%">-->
+<!--                <app-chat *ngIf="loadedChat"></app-chat>-->
+<!--                <app-saved-games *ngIf="loadedSavedGames"></app-saved-games>-->
+<!--              </th>-->
+<!--              <th style="width:20%"></th>-->
+<!--            </tr>-->
+<!--          </table>-->
+
+
+
+          <br>
         </div>
       </td>
     </tr>
 
   </table>
-
-    footer
 
   </div>
 </body>

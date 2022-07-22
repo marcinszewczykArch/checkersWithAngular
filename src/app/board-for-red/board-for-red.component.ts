@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GameService} from "../services/game.service";
 import {GameStateService} from "../services/game-state.service";
 import {delay} from "rxjs";
+import {CheckersClientService} from "../services/checkers-client.service";
 
 @Component({
   selector: 'app-board-for-red',

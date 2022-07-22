@@ -1,3 +1,7 @@
+body {
+  background-color: #ffffff;
+}
+
 /* max szerokość kolumny 1800px i wyśrodkowanie */
 .container {
   max-width: 1800px;
