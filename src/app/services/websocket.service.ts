@@ -12,8 +12,8 @@ const ERROR: string = "/error"
 export class WebsocketService {
 
   //BACKEND ON SERVER OR FROM LOCALHOST
-  // ROOT = 'ws://checkersone.herokuapp.com/ws/';
-  ROOT = 'ws://localhost:9000/ws/';
+  ROOT = 'ws://checkersone.herokuapp.com/ws/';
+  // ROOT = 'ws://localhost:9000/ws/';
 
   received: any[] = [];
   chatMessage: string;
