@@ -12,11 +12,11 @@ const ERROR: string = "/error"
 export class WebsocketService {
 
   //BACKEND ON SERVER OR FROM LOCALHOST
-  ROOT = 'ws://checkersone.herokuapp.com/ws/';
-  // ROOT = 'ws://localhost:9000/ws/';
+  // ROOT = 'ws://checkersone.herokuapp.com/ws/';
+  ROOT = 'ws://localhost:9000/ws/';
 
   received: any[] = [];
-  message: string;
+  chatMessage: string;
   subject: WebSocketSubject<string>;
   playerName: string;
   multiplayerState: MultiplayerState;
@@ -51,6 +51,7 @@ export class WebsocketService {
         this.gameStateService.movesNow    = gameState.movesNow
         this.gameStateService.status      = gameState.status
         this.gameStateService.nextMoveBy  = gameState.nextMoveBy
+        this.gameStateService.error       = ""
 
       } else if(msg.startsWith(CHAT)) {
         let chatMsg = msg.replace(CHAT, '').trim()
@@ -88,28 +89,29 @@ export class WebsocketService {
     if (message.length > 0) {
       this.subject.next("/chat " + message);
     }
-    this.message = "";
+    this.chatMessage = "";
   }
 
   makeMove(from: string, to: string): void {
+    this.gameStateService.error = ""
+    this.chatMessage = "";
     this.subject.next("/move " + from + " " + to);
-    this.message = "";
   }
 
   createNewRoom(newRoomName: string): void {
     this.subject.next("/room " + newRoomName);
-    this.message = "";
+    this.chatMessage = "";
     this.gameStateService.roomName = newRoomName
   }
 
   leaveRoom(): void {
     this.subject.next("/leaveRoom");
-    this.message = "";
+    this.chatMessage = "";
   }
 
   joinRoom(roomName: string): void {
     this.subject.next("/room " + roomName);
-    this.message = "";
+    this.chatMessage = "";
     this.gameStateService.roomName = roomName
   }
 }

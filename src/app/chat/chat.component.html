@@ -12,8 +12,8 @@
   </div>
 
   <div class="textInput">
-    <p><input type="text" [(ngModel)]=this.websocketService.message (keyup.enter)=this.websocketService.sentChatMessage(this.websocketService.message)></p>
-    <button (click)="this.websocketService.sentChatMessage(this.websocketService.message);"><h2>SEND</h2></button>
+    <p><input type="text" [(ngModel)]=this.websocketService.chatMessage (keyup.enter)=this.websocketService.sentChatMessage(this.websocketService.chatMessage)></p>
+    <button (click)="this.websocketService.sentChatMessage(this.websocketService.chatMessage);"><h2>SEND</h2></button>
   </div>
 
 

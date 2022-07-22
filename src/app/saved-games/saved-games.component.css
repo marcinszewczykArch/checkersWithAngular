@@ -1,0 +1,13 @@
+table, th, td {
+  border-bottom: 1px solid #ddd;
+  border-collapse: collapse;
+  text-align: left;
+  padding: 5px;
+  text-size-adjust: auto;
+  width: 70%;
+}
+
+/* podświetlenie wiersza tabeli*/
+tr:hover {
+  background-color: #dbe827;
+}

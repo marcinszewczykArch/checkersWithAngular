@@ -56,7 +56,7 @@ export class GameService {  //todo: MoveService
             this.gameStateService.nextMoveBy = newState.nextMoveBy
             this.gameStateService.status = newState.status
             this.gameStateService.movesNow2.next(newState.movesNow)
-            this.gameStateService.error = null
+            this.gameStateService.error = ""
 
             //todo: alert if end of game to be separated to other method. Show new page with stats.
             if (newState.status != "ongoing") {

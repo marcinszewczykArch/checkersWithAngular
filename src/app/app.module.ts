@@ -16,6 +16,7 @@ import { ChatComponent } from './chat/chat.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { PlayersComponent } from './players/players.component';
 import { RulesComponent } from './rules/rules.component';
+import { SavedGamesComponent } from './saved-games/saved-games.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { RulesComponent } from './rules/rules.component';
     RoomsComponent,
     PlayersComponent,
     RulesComponent,
+    SavedGamesComponent,
   ],
   imports: [
     BrowserModule,

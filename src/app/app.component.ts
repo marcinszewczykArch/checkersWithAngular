@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   loadedChooseSingleMulti: Boolean = true;
   loadedSinglePlayer: Boolean = false;
   loadedMultiPlayer: Boolean = false;
+  loadedSavedGames: Boolean = false;
 
   loadedLogin: Boolean = false;
   loadedChat: Boolean = false;
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
     this.loadedChooseSingleMulti = false;
     this.loadedSinglePlayer = false;
     this.loadedMultiPlayer = false;
+    this.loadedSavedGames = false;
 
     this.loadedLogin = false;
     this.loadedChat = false;

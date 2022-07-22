@@ -19,8 +19,8 @@ const httpOptions = {
 export class CheckersClientService { //todo: HttpService
 
 //BACKEND ON SERVER OR FROM LOCALHOST
-  ROOT = 'https://checkersone.herokuapp.com';
-//   ROOT = 'http://localhost:9000';
+//   ROOT = 'https://checkersone.herokuapp.com';
+  ROOT = 'http://localhost:9000';
 
   constructor(private httpClient: HttpClient, public gameStateService: GameStateService) {
   }
@@ -39,6 +39,11 @@ export class CheckersClientService { //todo: HttpService
   // @ts-ignore
   public getInitialState(): Observable<T | GameState> {
     return this.httpClient.get<GameState>(this.ROOT + '/initialstate')
+  }
+
+  // @ts-ignore
+  public getSavedStates(): Observable<T | GameStateTo> {
+    return this.httpClient.get<GameStateTo>(this.ROOT + '/state')
   }
 
   // public getStatePost(move: Move): Observable<GameState> {
@@ -70,6 +75,14 @@ export interface Room {
 }
 
 export interface GameState {
+  status: string;
+  movesNow: string;
+  board: string;
+  nextMoveBy: string;
+}
+
+export interface GameStateTo {
+  timestamp: string;
   status: string;
   movesNow: string;
   board: string;

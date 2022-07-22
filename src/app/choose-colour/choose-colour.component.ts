@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GameService} from "../services/game.service";
 import {AppComponent} from "../app.component";
+import {CheckersClientService} from "../services/checkers-client.service";
 
 @Component({
   selector: 'app-choose-colour',
@@ -9,7 +10,7 @@ import {AppComponent} from "../app.component";
 })
 export class ChooseColourComponent {
 
-  constructor(public appComponent: AppComponent) {
+  constructor(public appComponent: AppComponent, public checkersClientService: CheckersClientService) {
   }
 
   loadWhite() {
@@ -24,6 +25,11 @@ export class ChooseColourComponent {
     this.appComponent.loadedWhite = false
     this.appComponent.loadedChooseColour = false
     this.appComponent.loadedCurrentMove = true
+  }
+
+  loadSavedGames() {
+    this.appComponent.loadedChooseColour = false
+    this.appComponent.loadedSavedGames = true
   }
 
 }
