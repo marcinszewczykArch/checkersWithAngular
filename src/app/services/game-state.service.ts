@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 
 import {BehaviorSubject, Observable} from "rxjs";
 import { of } from 'rxjs';
-import {CheckersClientService} from "./checkers-client.service";
+import {CheckersClientService, Room} from "./checkers-client.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameStateService {
 
+  room: Room;
   roomName: string;
   isGameMultiplayer: Boolean;
 

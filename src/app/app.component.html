@@ -25,7 +25,6 @@
 
                 <app-login *ngIf="loadedLogin"></app-login>
                 <app-rooms *ngIf="loadedRooms"></app-rooms>
-                <app-players *ngIf="loadedPlayers"></app-players>
                 <app-rules *ngIf="loadedRules"></app-rules>
 
 
@@ -34,10 +33,13 @@
 
 
                 <app-chat *ngIf="loadedChat"></app-chat>
+                <app-board-bottom *ngIf="loadedBoardBottom"></app-board-bottom>
+
                 <app-saved-games *ngIf="loadedSavedGames"></app-saved-games>
               </th>
               <th style="width:20%">
-                {{this.websocketService.playerName}}
+<!--                {{this.websocketService.playerName}}-->
+                <app-players *ngIf="loadedPlayers"></app-players>
               </th>
             </tr>
           </table>

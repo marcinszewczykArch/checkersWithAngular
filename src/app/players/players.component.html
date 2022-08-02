@@ -4,8 +4,12 @@
 
   <thead>
   <th>  PLAYERS </th>
-  <th>  SCORE </th>
+  <th>   </th>
   </thead>
+
+  <tr>
+    <td colspan="2"> <hr> </td>
+  </tr>
 
   <tr *ngFor="let player of this.websocketService.multiplayerState.players">
     <td class="left">{{player}}</td>

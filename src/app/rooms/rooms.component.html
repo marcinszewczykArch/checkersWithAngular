@@ -3,31 +3,51 @@
 <table width="100%" class="rooms">
 
 <thead>
-<th>  ROOM </th>
-<th>  MEMBERS </th>
-<th>  JOIN BUTTON  </th>
+<th width="350px">  ROOM </th>
+<th width="350px">  MEMBERS </th>
+<th width="100px">  JOIN </th>
 </thead>
 
+  <tr>
+    <td colspan="3"> <hr> </td>
+  </tr>
+
 <tr *ngFor="let room of this.websocketService.multiplayerState.rooms">
-  <td width="40%">{{room.name}}</td>
-  <td width="40%">
+
+  <td>{{room.name}}</td>
+
+  <td>
     <table width="100%">
       <tr><div id="squareWhite"></div> {{room.players[0]}}</tr>
       <tr><div id="squareRed"></div> {{room.players[1]}}</tr>
     </table>
   </td>
-  <td width="20%">
+
+  <td>
     <div *ngIf="room.players.length < 2">
-      <button (click)="enterRoom(room.name);"><h2><<<</h2></button><br>
+      <button style="width: 100%" (click)="enterRoom(room.name);"><h2><<<</h2></button><br>
+    </div>
+    <div *ngIf="room.players.length >= 2">
+      <p>room is full</p>
     </div>
   </td>
+
 </tr>
+
+  <tr>
+    <td colspan="3"><br><br><br></td>
+  </tr>
+
+
+  <tr>
+    <td colspan="2"> <input style="width: 80%" type="text" placeholder="input new room name here" [(ngModel)]=this.newRoomName> </td>
+    <td> <button style="height: 100%" (click)="createRoom(this.newRoomName);"><h2>CREATE</h2></button></td>
+  </tr>
 
 </table>
 
-
-new room:
-<p><input type="text" [(ngModel)]=this.newRoomName></p>
-<button (click)="createRoom(this.newRoomName);"><h2>CREATE</h2></button>
+<!--<br><br><br><br><br>-->
+<!--<p><input type="text" [(ngModel)]=this.newRoomName></p>-->
+<!--<button (click)="createRoom(this.newRoomName);"><h2>CREATE</h2></button>-->
 
 </body>

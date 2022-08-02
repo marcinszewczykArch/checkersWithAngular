@@ -3,20 +3,40 @@ body {
 }
 
 .container {
+  width: 100%;
   font-family: "Century Gothic";
   font-size: 16px;
 }
 
 input {
   height: 50px;
-  width: 30%;
-  border-width: 0;
-  background-color: #ccd7f3;
+  width: 400px;
+  border-width: 1px;
+  background-color: #ececec;
   position: center;
   text-decoration: none;
   text-align: center;
   display: inline-block;
   margin-right: 0;
   font-family: "Century Gothic";
+  font-size: 25px;
+}
+
+button {
+  background-color: #ececec;
+  border-color: #ececec;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  position: center;
+  text-decoration: none;
+  display: inline-block;
   font-size: 16px;
+  width: 200px;
+}
+
+button:hover {
+  color: black;
+  background-color: #dbe827;
 }

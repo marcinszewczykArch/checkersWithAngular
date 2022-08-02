@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   loadedRooms: Boolean = false;
   loadedPlayers: Boolean = false;
   loadedRules: Boolean = false;
+  loadedBoardBottom: Boolean = false;
 
   constructor(public gameService: GameService, public websocketService: WebsocketService, public gameStateService: GameStateService) {
   }
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit {
     this.loadedRooms = false;
     this.loadedPlayers = false;
     this.loadedRules = false;
+    this.loadedBoardBottom = false;
   }
 
   ngOnInit(): void {

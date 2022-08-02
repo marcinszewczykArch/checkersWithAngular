@@ -1,20 +1,28 @@
 <div class="container">
 
   <table width="100%">
-    <tr><div id="squareWhite"></div> {{this.gameStateService.playerWhite}}</tr>
-    <tr><div id="squareRed"></div> {{this.gameStateService.playerRed}}</tr>
+    <tr>
+      <td style="width: 33%">room name : {{this.gameStateService.roomName}}</td>
+      <td style="width: 33%">player  <div id="squareWhite"></div>:  {{this.getPlayers()[0]}}</td>
+      <td style="width: 34%">player  <div id="squareRed"></div>:  {{this.getPlayers()[1]}}</td>
+    </tr>
   </table>
 
-  <div class="chat">
+  <div class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <ng-container *ngFor="let msg of this.websocketService.received">
       {{msg}} <br>
     </ng-container>
   </div>
 
-  <div class="textInput">
-    <p><input type="text" [(ngModel)]=this.websocketService.chatMessage (keyup.enter)=this.websocketService.sentChatMessage(this.websocketService.chatMessage)></p>
-    <button (click)="this.websocketService.sentChatMessage(this.websocketService.chatMessage);"><h2>SEND</h2></button>
-  </div>
+
+      <div class="textInput">
+        <table width="100%">
+          <tr>
+            <td style="width: 100%"><input type="text" [(ngModel)]=this.websocketService.chatMessage (keyup.enter)=this.websocketService.sentChatMessage(this.websocketService.chatMessage)></td>
+          </tr>
+        </table>
+      </div>
+
 
 
   <br>

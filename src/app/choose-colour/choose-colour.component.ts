@@ -14,21 +14,21 @@ export class ChooseColourComponent {
   }
 
   loadWhite() {
+    this.appComponent.cleanContainer()
     this.appComponent.loadedWhite = true
-    this.appComponent.loadedRed = false
-    this.appComponent.loadedChooseColour = false
     this.appComponent.loadedCurrentMove = true
+    this.appComponent.loadedBoardBottom = true;
   }
 
   loadRed() {
+    this.appComponent.cleanContainer()
     this.appComponent.loadedRed = true
-    this.appComponent.loadedWhite = false
-    this.appComponent.loadedChooseColour = false
     this.appComponent.loadedCurrentMove = true
+    this.appComponent.loadedBoardBottom = true;
   }
 
   loadSavedGames() {
-    this.appComponent.loadedChooseColour = false
+    this.appComponent.cleanContainer()
     this.appComponent.loadedSavedGames = true
   }
 

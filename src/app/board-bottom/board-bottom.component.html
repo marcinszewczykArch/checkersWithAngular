@@ -1,4 +1,7 @@
 <body>
+
   <br><br>
-  <button class="save" (click)="this.checkersClientService.saveGame();"><h2>SAVE CURRENT GAME STATE</h2></button>
+  <p><input type="text" class="saveInput" placeholder="input your save name" [(ngModel)]=this.saveName></p>
+  <button class="save" (click)="this.checkersClientService.saveGame(this.saveName);"><h2>SAVE STATE</h2></button>
+
 </body>

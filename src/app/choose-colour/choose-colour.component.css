@@ -26,6 +26,7 @@ button {
 
 button:hover {
   color: black;
+  background-color: #dbe827;
 }
 
 .buttons {

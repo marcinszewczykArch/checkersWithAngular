@@ -8,15 +8,21 @@ table{
   border: none;
   text-align: left;
   padding: 5px;
-
   width: 100%;
 }
 
-
-/* podświetlenie wiersza tabeli*/
-tr:hover {
-  background-color: #dbe827;
+input{
+  font-size: 16px;
+  height: 50px;
+  font-family: "Century Gothic";
+  font-size: 25px;
 }
+
+
+/*!* podświetlenie wiersza tabeli*!*/
+/*tr:hover {*/
+/*  background-color: #dbe827;*/
+/*}*/
 
 button {
   height: 70%;
@@ -35,6 +41,7 @@ button {
 
 button:hover {
   color: black;
+  background-color: #dbe827;
 }
 
 #squareRed {

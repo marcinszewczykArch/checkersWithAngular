@@ -10,6 +10,8 @@ export class BoardBottomComponent implements OnInit {
 
   constructor(public checkersClientService: CheckersClientService) { }
 
+  saveName: string
+
   ngOnInit(): void {
   }
 

@@ -7,8 +7,8 @@ import {GameStateService} from "./game-state.service";
 
 const httpOptions = {
   headers: new HttpHeaders({
-    // 'Content-Type': 'application/json',
-     'Content-Type': 'text',
+    'Content-Type': 'application/json',
+    //  'Content-Type': 'text',
     // Authorization: 'my-auth-token'
   })
 };
@@ -46,9 +46,38 @@ export class CheckersClientService { //todo: HttpService
     return this.httpClient.get<GameStateTo>(this.ROOT + '/state')
   }
 
+  public postGameState(gameStateTo: GameStateTo): Observable<GameStateTo> {
+    return this.httpClient.post<GameStateTo>(this.ROOT + '/state', gameStateTo, httpOptions)
+  }
+
   // @ts-ignore
-  public saveGame(): Observable<T | GameStateTo> {
-    // return this.httpClient.post<GameStateTo>(this.ROOT + '/state')
+  public saveGame(saveName: string){
+
+    let nextMoveBy = ""
+    if (this.gameStateService.nextMoveBy != null) {
+      nextMoveBy = this.gameStateService.nextMoveBy.toString()
+    }
+
+    let gameStateTo:  GameStateTo = {
+      timestamp: "",
+      status: this.gameStateService.status,
+      movesNow: this.gameStateService.movesNow,
+      board: this.gameStateService.board,
+      nextMoveBy: nextMoveBy,
+      saveName: saveName,
+    };
+
+    this.postGameState(gameStateTo)
+      .subscribe(
+        result => {
+              console.log(result)
+              alert("game saved!")
+        },
+          error => {
+              console.log(error)
+              alert("error")
+        }
+      )
   }
 
   // public getStatePost(move: Move): Observable<GameState> {
@@ -92,5 +121,6 @@ export interface GameStateTo {
   movesNow: string;
   board: string;
   nextMoveBy: string;
+  saveName: string;
 }
 

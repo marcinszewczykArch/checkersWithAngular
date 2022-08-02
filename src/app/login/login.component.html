@@ -1,9 +1,9 @@
 <body>
   <div class="container">
 
-    <p>your login</p>
-    <br>
-    <p><input type="text" id="username" name="username" [(ngModel)]=this.websocketService.playerName></p>
+
+    <br><br><br><br><br>
+    <p><input type="text" id="username" name="username" placeholder="input your name" [(ngModel)]=this.websocketService.playerName></p>
 
     <br>
     <button (click)="this.login(this.websocketService.playerName);"><h2>JOIN</h2></button>

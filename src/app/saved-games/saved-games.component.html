@@ -1,26 +1,65 @@
 <body>
-  <p>saved games</p>
+  <p>SAVED GAME STATES</p>
 
   <table class="states">
 
     <thead>
-      <th> timestamp</th>
-      <th> status</th>
-      <th> movesNow</th>
-      <th> board</th>
-      <th> nextMoveBy</th>
+      <th style="width:30%"> </th>
+      <th style="width:70%"> </th>
     </thead>
 
     <tbody>
-    <ng-container *ngFor="let state of savedStates">
-      <tr>
-        <td>{{state.timestamp}}</td>
-        <td>{{state.status}}</td>
-        <td>{{state.movesNow}}</td>
-        <td>{{state.board}}</td>
-        <td>{{state.nextMoveBy}}</td>
-      </tr>
-    </ng-container>
+      <ng-container *ngFor="let state of savedStates">
+
+        <tr class="title" (click)="state.expanded = !state.expanded">
+          <td colspan="2">
+            <br>
+            {{state.saveName}}
+            <hr>
+          </td>
+        </tr>
+
+        <ng-container *ngIf="state.expanded">
+          <tr class="expanded">
+            <td>timestamp:</td>
+            <td>{{state.timestamp}}</td>
+          </tr>
+          <tr class="expanded">
+            <td>status:</td>
+            <td>{{state.status}}</td>
+          </tr>
+          <tr class="expanded">
+            <td>movesNow:</td>
+            <td>{{state.movesNow}}</td>
+          </tr>
+          <tr class="expanded">
+            <td>board:</td>
+            <td>{{state.board}}</td>
+          </tr>
+          <tr class="expanded">
+            <td>nextMoveBy:</td>
+            <td>{{state.nextMoveBy}}</td>
+          </tr>
+
+          <tr class="expanded">
+            <td colspan="2">
+              <button (click)="loadStateAsWhite(state)"> <h2>Play white</h2> </button>
+            </td>
+          </tr>
+
+          <tr class="expanded">
+            <td colspan="2">
+              <button (click)="loadStateAsRed(state)"> <h2>Play red</h2> </button>
+            </td>
+          </tr>
+          <tr class="expanded">
+            <td colspan="2">
+            </td>
+          </tr>
+
+        </ng-container>
+
+      </ng-container>
     </tbody>
 
   </table>

@@ -18,4 +18,19 @@ body {
 
 button:hover {
   color: black;
+  background-color: #dbe827;
+}
+
+.saveInput {
+  background-color: #dad9d9;
+  border-color: gray;
+  border: none;
+  color: black;
+  padding: 5px 5px;
+  text-align: center;
+  position: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 790px;
 }

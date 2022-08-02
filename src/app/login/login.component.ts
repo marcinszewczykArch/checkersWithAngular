@@ -14,7 +14,7 @@ export class LoginComponent {
   login(playerName: string): void {
     this.websocketService.initializeWebsocket(playerName)
     this.websocketService.makeConnection()
-    this.appComponent.loadedLogin = false
+    this.appComponent.cleanContainer()
     this.appComponent.loadedRooms = true
     this.appComponent.loadedPlayers = true
   }

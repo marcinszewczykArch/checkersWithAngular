@@ -15,16 +15,17 @@ export class ChooseSingleMultiComponent {
   }
 
   loadMultiPlayer() {
+    this.appComponent.cleanContainer()
+    this.gameService.getInitialState()
     this.gameStateService.isGameMultiplayer = true
     this.appComponent.loadedLogin = true
-    this.appComponent.loadedChooseSingleMulti = false
   }
 
   loadSinglePlayer() {
+    this.appComponent.cleanContainer()
+    this.gameService.getInitialState()
     this.gameStateService.isGameMultiplayer = false
     this.appComponent.loadedChooseColour = true
-    this.appComponent.loadedChooseSingleMulti = false
-    this.gameService.getInitialState()
   }
 
 
